@@ -124,7 +124,7 @@ function downloadDev() {
 
             xhr.open("GET", data['artifacts'][0]['archive_download_url']);
             xhr.setRequestHeader('Accept', 'application/vnd.github.v3+json');
-            xhr.setRequestHeader('Authorization', `Bearer ${atob('Z2l0aHViX3BhdF8xMUFUSEVWSVEweG96VXZYMDdLaE1RX2c2ME11S3VKZFBOcFlxYmxrbThKM0dra1NoOTdkTGZtTjVnWGhCQkE5VGFIR0ROQlNDQzI4NTN1azl3')}`);
+            xhr.setRequestHeader('Authorization', `Bearer ${atob('Z2l0aHViX3BhdF8xMUFUSEVWSVEwdDJuQ1h3VUNKS1pKX29FRzFIaUVBaWdSaVVKT2ZFQXk2TTgxYnB6Q1FqUmVCSHZCMkpYNk9VamxYNklOVTJONVJtcTZQYkRS')}`);
             xhr.responseType = "blob";
             
             xhr.onload = function () {
