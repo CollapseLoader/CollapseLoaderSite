@@ -118,32 +118,9 @@ function downloadLatestRelease() {
     });
 }
 function downloadDev() {
-    returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/actions/workflows/main.yml/runs?per_page=1&branch=dev&event=push&status=success", function(artifact_data) {
-        returnJSON(artifact_data['workflow_runs'][0]['artifacts_url'], function (data) {
-            var xhr = new XMLHttpRequest();
+    returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits/dev", function(data) {        
+        latest_commit = data
 
-            xhr.open("GET", data['artifacts'][0]['archive_download_url']);
-            xhr.setRequestHeader('Accept', 'application/vnd.github.v3+json');
-            xhr.setRequestHeader('Authorization', `Bearer ${atob('Z2l0aHViX3BhdF8xMUFUSEVWSVEwdDJuQ1h3VUNKS1pKX29FRzFIaUVBaWdSaVVKT2ZFQXk2TTgxYnB6Q1FqUmVCSHZCMkpYNk9VamxYNklOVTJONVJtcTZQYkRS')}`);
-            xhr.responseType = "blob";
-            
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    var blob = xhr.response;
-                    var url = window.URL.createObjectURL(blob);
-                    var a = document.createElement('a');
-
-                    a.href = url;
-                    a.download = data['artifacts'][0].name;
-                    document.body.appendChild(a);
-                    
-                    a.click();
-                    window.URL.revokeObjectURL(url);
-                    document.body.removeChild(a)
-                }
-            };
-
-            xhr.send();            
-        })
-    });
+        window.open(`https://storage.googleapis.com/collapseloader/builds/CollapseLoader_${latest_commit['sha'].slice(0, 7)}.exe`)
+    })
 }
