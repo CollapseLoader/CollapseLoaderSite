@@ -42,7 +42,7 @@ function returnJSON(url, callback) {
     
     xhttp.open("GET", url);
     xhttp.setRequestHeader('Accept', 'application/vnd.github+json')
-    xhttp.setRequestHeader('Authorization', 'Bearer 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')
+    xhttp.setRequestHeader('Authorization', 'Bearer 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')
     xhttp.send();
 }
 
@@ -126,7 +126,7 @@ function downloadDev() {
 
             xhr.open("GET", data['artifacts'][0]['archive_download_url']);
             xhr.setRequestHeader('Accept', 'application/vnd.github.v3+json');
-            xhr.setRequestHeader('Authorization', 'Bearer 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');
+            xhr.setRequestHeader('Authorization', 'Bearer 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');
             xhr.responseType = "blob";
             
             xhr.onload = function () {
