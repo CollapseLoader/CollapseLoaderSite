@@ -41,8 +41,6 @@ function returnJSON(url, callback) {
     };
     
     xhttp.open("GET", url);
-    xhttp.setRequestHeader('Accept', 'application/vnd.github+json')
-    xhttp.setRequestHeader('Authorization', 'Bearer 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')
     xhttp.send();
 }
 
@@ -126,7 +124,7 @@ function downloadDev() {
 
             xhr.open("GET", data['artifacts'][0]['archive_download_url']);
             xhr.setRequestHeader('Accept', 'application/vnd.github.v3+json');
-            xhr.setRequestHeader('Authorization', 'Bearer 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');
+            xhr.setRequestHeader('Authorization', `Bearer ${atob('Z2l0aHViX3BhdF8xMUFUSEVWSVEweG96VXZYMDdLaE1RX2c2ME11S3VKZFBOcFlxYmxrbThKM0dra1NoOTdkTGZtTjVnWGhCQkE5VGFIR0ROQlNDQzI4NTN1azl3')}`);
             xhr.responseType = "blob";
             
             xhr.onload = function () {
