@@ -1,67 +1,88 @@
 function preloader() {
-    getLatestCommit()
-
-    var app = document.getElementById("text")
-
-    var typewriter_line = new Typewriter(app, {
-        loop: true,
-        delay: 40
-    })
+    if (location.pathname == '/') {
+        getDiscordOnline()
+        getLatestCommit()
+        
+        var app = document.getElementById("text")
+        
+        var typewriter_line = new Typewriter(app, {
+            loop: true,
+            delay: 40
+        })
+    }
 
     setTimeout(() => {
 
         document.getElementById("preloader_div").style.opacity = 0
-
-        typewriter_line
-            .typeString("Simple and powerful loader for minecraft")
-            .pauseFor(2000)
-            .deleteAll(20)
-            .typeString("Click on <strong>Download</strong> button")
-            .pauseFor(2500)
-            .deleteAll(20)
-            .typeString("Join our <strong>Discord</strong> community")
-            .pauseFor(2500)
-            .start()
+        if (location.pathname == '/') {
+            typewriter_line
+                .typeString("Simple and powerful loader for minecraft")
+                .pauseFor(2000)
+                .deleteAll(20)
+                .typeString("Click on <strong>Download</strong> button")
+                .pauseFor(2500)
+                .deleteAll(20)
+                .typeString("Join our <strong>Discord</strong> community")
+                .pauseFor(2500)
+                .start()
+        }
     }, 1000)
 
     setTimeout(() => {
         document.getElementById("preloader_div").remove()
     }, 1200)
-
-
 }
 
 function returnJSON(url, callback) {
     var xhttp = new XMLHttpRequest();
+
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var jsonData = JSON.parse(this.responseText);
-            callback(jsonData);
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                var jsonData = JSON.parse(this.responseText);
+                callback(jsonData);
+            } else {
+                callback(false)
+            }
         }
     };
-    
+
     xhttp.open("GET", url);
     xhttp.send();
+  
 }
 
 function getLatestCommit() {
-    returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits", function(data) {        
-        latest_commit = data[0]
-    
-        var typewriter_line = new Typewriter(document.getElementById("logo_text"), {
-            loop: false,
-            delay: 40,
-            cursor: ''
-        })
-    
-    
-        typewriter_line
-            .changeDelay(30)
-            .typeString('Collapse Loader')
-            .changeDelay(40)
-            .typeString(` (<a href="${latest_commit['html_url']}" target="_blank">${latest_commit['sha'].slice(0, 7)}</a>)`)
-            .start()
+    var typewriter_line = new Typewriter(document.getElementById("logo_text"), {
+        loop: false,
+        delay: 40,
+        cursor: ''
+    })
+
+    typewriter_line
+        .changeDelay(30)
+        .typeString('Collapse Loader')
+        .changeDelay(40)
+
+    returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits", function (data) {
+        if (data != false) {
+            latest_commit = data[0]
+
+            typewriter_line
+                .typeString(` (<a href="${latest_commit['html_url']}" target="_blank">${latest_commit['sha'].slice(0, 7)}</a>)`)
+                .start()
+        }
+        else {
+            typewriter_line
+                .start()
+        }
     });
+}
+
+function getDiscordOnline() {
+    returnJSON('https://discord.com/api/guilds/1181527887497670666/widget.json', function (data) {
+        document.getElementById('discord').innerText = `Discord (${data.presence_count} online)`
+    })
 }
 
 
@@ -113,14 +134,27 @@ function revertChanges() {
 
 
 function downloadLatestRelease() {
-    returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/releases/latest", function(data) {
+    returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/releases/latest", function (data) {
         window.open(data["assets"][0]["browser_download_url"], "_blank")
     });
 }
 function downloadDev() {
-    returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits/dev", function(data) {        
+    returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits/dev", function (data) {
         latest_commit = data
 
         window.open(`https://storage.googleapis.com/collapseloader/builds/CollapseLoader_${latest_commit['sha'].slice(0, 7)}.exe`)
     })
+}
+
+// DONATE PAGE $$$
+
+function copyCrypto(crypto) {
+    if (crypto == 'ton') {
+        navigator.clipboard.writeText("UQAIAReD2gT6KaXyf88qOPiXh8jqL01bPMJ3TVy_S5DriAEe")
+    }
+    else if (crypto == 'usdt') {
+        navigator.clipboard.writeText("TMnSnK2cCXhppLES4uaMKTXMNhwDBhgAcR")
+    }
+
+    alert('Crypto wallet copied to clipboard')
 }

@@ -51,6 +51,10 @@ img {
     box-shadow: 0 0 0 7px #1616227a;
     
 }
+.buttons a img {
+    width: 30px;
+    margin-right: 0.5rem;
+}
 .center {
     top: 50%;
     left: 50%;
