@@ -1,4 +1,5 @@
 function preloader() {
+    
     if (location.pathname == '/') {
         getDiscordOnline()
         getLatestCommit()
@@ -9,6 +10,12 @@ function preloader() {
             loop: true,
             delay: 40
         })
+
+        document.OSName = "Unknown";
+        if (window.navigator.userAgent.indexOf("Windows")!= -1) document.OSName="Windows";
+        if (window.navigator.userAgent.indexOf("Mac")    != -1) document.OSName="Mac/iOS";
+        if (window.navigator.userAgent.indexOf("X11")    != -1) document.OSName="UNIX";
+        if (window.navigator.userAgent.indexOf("Linux")  != -1) document.OSName="Linux";
     }
 
     setTimeout(() => {
@@ -132,13 +139,22 @@ function revertChanges() {
 }
 // ---------
 
+function alertCompatibility() {
+    if (document.OSName != "Windows") {
+        alert("Loader is not supported on Unix or Mac")
+    }
+}
 
 function downloadLatestRelease() {
+    alertCompatibility()
+
     returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/releases/latest", function (data) {
         window.open(data["assets"][0]["browser_download_url"], "_blank")
     });
 }
 function downloadDev() {
+    alertCompatibility()
+    
     returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits/dev", function (data) {
         latest_commit = data
 
