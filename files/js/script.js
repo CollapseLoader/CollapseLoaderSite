@@ -158,7 +158,7 @@ function downloadDev() {
     returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits/dev", function (data) {
         latest_commit = data
 
-        window.open(`https://storage.googleapis.com/collapseloader/builds/CollapseLoader_${latest_commit['sha'].slice(0, 7)}.exe`)
+        window.open(`https://cdn.collapseloader.org/builds/CollapseLoader_${latest_commit['sha'].slice(0, 7)}.exe`)
     })
 }
 
