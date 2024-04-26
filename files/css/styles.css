@@ -44,7 +44,8 @@ img {
 
 .buttons a {
     display: inline-flex;
-    font-size: 24px;
+    width: max-content;
+    font-size: 22px;
     text-decoration: none;
     background-color: #cdd6f4;
     color: var(--bg);
