@@ -87,7 +87,7 @@ function getLatestCommit() {
 }
 
 function getDiscordOnline() {
-    returnJSON('https://discord.com/api/guilds/1181527887497670666/widget.json', function (data) {
+    returnJSON('https://discord.com/api/guilds/1231330785852653568/widget.json', function (data) {
         document.getElementById('discord').innerText = `Discord (${data.presence_count} online)`
     })
 }
