@@ -155,7 +155,7 @@ function downloadLatestRelease() {
 function downloadDev() {
     alertCompatibility()
     
-    returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits/dev", function (data) {
+    returnJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits/main", function (data) {
         latest_commit = data
 
         window.open(`https://cdn.collapseloader.org/builds/CollapseLoader_${latest_commit['sha'].slice(0, 7)}.exe`)
