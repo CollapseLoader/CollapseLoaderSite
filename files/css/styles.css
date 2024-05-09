@@ -45,14 +45,14 @@ img {
 .buttons a {
     display: inline-flex;
     width: max-content;
-    font-size: 22px;
+    font-size: 20px;
     text-decoration: none;
     background-color: #cdd6f4;
     color: var(--bg);
     cursor: pointer;
     margin-top: 10px;
     border-radius: 0.8rem;
-    padding: 0.5rem;
+    padding: 0.3rem;
     padding-left: 0.7rem;
     padding-right: 0.7rem;
     transition: 0.3s;
@@ -143,7 +143,7 @@ img {
 
 @media only screen and (max-width: 500px) {
     #logo {
-        width: 180px;
+        width: 140px;
     }
 
     .buttons a {
