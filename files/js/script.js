@@ -3,6 +3,7 @@ function preloader() {
     if (location.pathname == '/') {
         getDiscordOnline()
         getLatestCommit()
+        getLatestRelease()
         
         var app = document.getElementById("text")
         
@@ -84,6 +85,16 @@ function getLatestCommit() {
                 .start()
         }
     });
+}
+
+function getLatestRelease() {
+    returnJSON('https://api.github.com/repos/dest4590/CollapseLoader/releases', function (data) {
+        if (data != false) {
+            latest_commit = data[0]
+
+            document.getElementById('download').innerText = 'download ' + latest_commit['tag_name']
+        }
+    })
 }
 
 function getDiscordOnline() {
