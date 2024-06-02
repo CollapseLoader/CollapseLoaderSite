@@ -1,0 +1,173 @@
+:root {
+    --fg: #cdd6f4;
+    --bg: #1e1e2e;
+    --bg-1: #252538;
+}
+
+body {
+    background-color: #1e1e2e;
+    font-family: "Readex Pro", sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: var(--fg);
+}
+
+a {
+    color: var(--fg);
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+}
+
+#logo {
+    transition: 1s ease-in-out;
+}
+
+#logo svg {
+    height: 13rem !important;
+}
+
+#logo_text {
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-weight: bold;
+    unicode-bidi: isolate;
+    transition: font-size 1s;
+}
+
+#container-animation {
+    opacity: 0;
+    transition: all 1s;
+}
+
+#text {
+    margin-bottom: 1rem;
+    font-size: 16px;
+}
+
+.buttons a {
+    display: inline-flex;
+    width: max-content;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: #cdd6f4;
+    color: var(--bg);
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 0.8rem;
+    padding: 0.3rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    transition: 0.3s;
+    margin-left: 0.5rem;
+}
+
+.buttons a:hover {
+    background-color: #cdd6f4c3;
+    box-shadow: 0 0 0 7px #1616227a;
+
+}
+
+.buttons a img {
+    width: 30px;
+    margin-right: 0.5rem;
+}
+
+.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+.center h2 {
+    transition: 1s all;
+}
+
+.left {
+    text-align: center;
+}
+
+#preloader_div {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px);
+    z-index: 1337;
+    user-select: none;
+    transition: opacity 0.5s;
+}
+
+#preloader_spinner {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    transition: opacity 0.5s;
+    animation: 1.5s rotate cubic-bezier(.4, 0, 0, 1) infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    25% {
+        transform: rotate(90deg)
+    }
+
+    50% {
+        transform: rotate(180deg)
+    }
+
+    75% {
+        transform: rotate(270deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+#video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s;
+    filter: blur(7px);
+}
+
+@media only screen and (max-width: 500px) {
+    #logo svg {
+        height: 10rem !important;
+    }
+
+    .buttons a {
+        font-size: 20px;
+    }
+
+    #text {
+        font-size: 14px;
+    }
+
+    #logo_text {
+        font-size: 1.3rem;
+    }
+
+    .center h2 {
+        font-size: 1.2rem;
+    }
+}

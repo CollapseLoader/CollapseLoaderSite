@@ -1,89 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CollapseLoader - Client loader</title>
 
-        <link rel="stylesheet" href="/files/css/styles.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap">
-            
-        <meta name="darkreader-lock">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width">
+    <title>CollapseLoader</title>
 
-        <script src="files/js/core.js"></script>
-        <script src="files/js/lottie.min.js" type="text/javascript"></script>
-        <script src="files/js/script.js"></script>
+    <link rel="stylesheet" href="/files/css/styles.css">
+    <link rel="stylesheet" href="/files/css/header.css">
+    <link rel="stylesheet" href="/files/css/background.css">
+    <link rel="shortcut icon" href="/files/img/collapse.svg">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
 
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDZVJ6HR2K"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+    <script src="/files/js/script.js" type="module"></script>
+    <script src="/files/js/libraries/lenis.min.js"></script>
+    <script src="/files/js/libraries/odometer.min.js" type="module"></script>
+    <script src="/files/js/libraries/vanilla-tilt.min.js"></script>
 
-            gtag('config', 'G-EDZVJ6HR2K');
-        </script>
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-5BKLGW9D');</script>
-        <!-- End Google Tag Manager -->
+    <!-- Meta -->
+    <meta name="description"
+        content="CollapseLoader, client Loader for minecraft, completely open source, made for easy to use clients">
+    <meta property="og:description"
+        content="CollapseLoader, client Loader for minecraft, completely open source, made for easy to use clients">
+    <meta name="darkreader-lock">
+    <meta name="keywords" content="collapse, collapseloader, loader, client, minecraft, client loader">
+    <meta name="author" content="CollapseTeam">
+    <meta property="og:title" content="CollapseLoader - Client loader">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://collapseloader.org">
+</head>
 
-        <link rel="icon" type="image/x-icon" href="files/img/collapse.svg">
+<body onload="document.loader()">
+    <div class="stars"></div>
 
-        <meta name="description" content="CollapseLoader, client Loader for minecraft, completely open source, made for easy to use clients">
-        <meta property="og:description" content="CollapseLoader, client Loader for minecraft, completely open source, made for easy to use clients">
-        
-        <meta name="keywords" content="collapse, collapseloader, loader, client, minecraft, client loader">
-        <meta name="author" content="CollapseTeam">
-        <meta property="og:title" content="CollapseLoader - Client loader">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://collapseloader.org">
+    <div class="header">
+        <div class="buttons">
+            <div id="header-logo">
+                <img src="/files/img/collapse.svg" width="60" id="logo">
+                <span>CollapseLoader</span>
+            </div>
 
-        <meta name="yandex-verification" content="1f5694e0da205153" />
-    </head>
+            <nav class="header-buttons">
+                <a href="https://github.com/dest4590/CollapseLoader" target="_blank">Github</a>
+                <a href="https://web.collapseloader.org/" target="_blank">API</a>
+                <a href="/donate/" target="_blank">Donate</a>
+                <a href="/discord" target="_blank">Discord</a>
+            </nav>
 
-    <body onload="preloader()">
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BKLGW9D"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
+            <div class="download-button">
+                <a class="button" href="https://github.com/dest4590/CollapseLoader" target="_blank"><span
+                        class="material-symbols-outlined">crowdsource</span>Source Code</a>
+            </div>
+        </div>
+    </div>
 
-        <!-- Type 1337 -->
+    <div class="content">
+        <div class="top-content">
+            <div class="text-content">
+                <div class="text">
+                    <h1>LOADER FOR YOUR NEEDS</h1>
+                </div>
 
-        <video muted id="video" style="z-index: -1;" onended="revertChanges()">
-            <source src="files/where_is_my_mind.mp4" type="video/mp4">
-        </video>
+                <div class="small-text">
+                    <p>
+                        Simple client loader for minecraft, supports almost all versions of windows
+                    </p>
+                </div>
+            </div>
 
-        <div id="preloader_div">
-            <div id="preloader_spinner">
-                <img src="files/img/collapse.svg" alt="Preloader" class="center" id="preloader">
+            <div class="showcase">
+                <div class="showcase-text"></div>
             </div>
         </div>
 
-        <div class="center">
-            <!-- <img src="files/img/collapse.svg" alt="CollapseLoader" id="logo" title="type 1337"> -->
-            <div id="logo">
-                <div id="container-animation"></div>
-            </div>
-    
-            <div id="logo_text"></div>
+        <div class="download-buttons">
+            <a class="button" href="#" onclick="document.downloadLatestRelease()">
+                <span class="material-symbols-outlined">download</span>
 
-            <div id="text"></div>
+                Download</a>
+            <a class="button" href="#" onclick="document.downloadDev()">
+                <span class="material-symbols-outlined">code</span>
 
-            <div class="buttons">
-                <a onclick="downloadLatestRelease()" id="download">download</a>
-                <a onclick="downloadDev()" id="downloadDev"><span style="color: #4a4aa4;">download (dev, latest)</span></a>
-                </br>
-                <a href="https://github.com/dest4590/CollapseLoader">github</a>
-                <a href="/discord" id="discord" target="_blank">discord</a> 
-                <a href="/donate">donate</a>
-                <a href="https://web.collapseloader.org">api</a>
-            </div>
+                Download (Dev)</a>
         </div>
+    </div>
 
-        <p class="left">By <a href="https://github.com/dest4590">dest4590</a> and <a href="https://github.com/mtkusbdevice">mtkusbdevice</a> with ❤️</p>
-    </body>
+    <div class="social-content">
+        <h1><span class="material-symbols-outlined">help</span>Fast support</h1>
+        <h3>There's a Discord server (<span id="discord-online">?</span> online) where you can create a ticket and ask
+            for help.</h3>
+        <br>
+        <h2>Our social links</h2>
+        <div class="social-links">
+            <a class="button" href="/discord/"><img src="/files/img/socials/discord.svg">Discord server</a>
+            <a class="button" href="https://t.me/collapseloader"><img src="/files/img/socials/telegram.svg">Telegram
+                channel</a>
+            <a class="button" href="https://github.com/dest4590/CollapseLoader" target="_blank"><img
+                    src="/files/img/socials/github.svg">GitHub</a>
+        </div>
+    </div>
+
+    <div class="security-content">
+        <h1><span class="material-symbols-outlined">security</span>Transparency</h1>
+        <h3>
+            <span class="material-symbols-outlined">search</span>Each client is checked for viruses, and even if there
+            is something in it, it is “neutralized” If clients cannot be checked for viruses, they will not be added.
+        </h3>
+
+        <h3>
+            <span class="material-symbols-outlined">lock_open</span>Loader is completely open source; you can check for
+            viruses yourself.
+        </h3>
+
+        <h3>
+            <span class="material-symbols-outlined">dns</span>CI/CD, each version of the loader is built not by the
+            creator but on GitHub servers. With MD5 hash verification, you can be 100% sure that the executable file has
+            not been modified.
+        </h3>
+    </div>
+
+    <div class="features-content">
+        <h1><span class="material-symbols-outlined">lightbulb</span>Features</h1>
+
+        <h3>
+            <span class="material-symbols-outlined">bolt</span>Fast, starts in 2 seconds on an average computer, and has
+            10 gigabit servers.
+
+        </h3>
+        <h3>
+            <span class="material-symbols-outlined">stadia_controller</span>Easy to use, all the user has to do is one
+            digit.
+        </h3>
+        <h3>
+            <span class="material-symbols-outlined">hub</span>Usability, convenient API, through which you can create
+            your own loaders, based on our.
+        </h3>
+    </div>
+
+    <div class="footer">
+        <h1>CollapseLoaderSite</h1>
+        <h3>Made by <a href="https://github.com/dest4590" target="_blank">dest4590</a> & <a
+                href="https://github.com/mtkusbdevice" target="_blank">mtkusbdevice</a></h3>
+    </div>
+</body>
+
 </html>

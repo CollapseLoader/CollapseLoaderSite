@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollapseLoader - Client loader</title>
+
+    <link rel="stylesheet" href="../files/old/css/styles.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap">
+
+    <meta name="darkreader-lock">
+
+    <script src="../files/old/js/core.js"></script>
+    <script src="../files/old/js/lottie.min.js" type="text/javascript"></script>
+    <script src="../files/old/js/script.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDZVJ6HR2K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-EDZVJ6HR2K');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5BKLGW9D');</script>
+    <!-- End Google Tag Manager -->
+
+    <link rel="icon" type="image/x-icon" href="../files/img/collapse.svg">
+
+    <meta name="description"
+        content="CollapseLoader, client Loader for minecraft, completely open source, made for easy to use clients">
+    <meta property="og:description"
+        content="CollapseLoader, client Loader for minecraft, completely open source, made for easy to use clients">
+
+    <meta name="keywords" content="collapse, collapseloader, loader, client, minecraft, client loader">
+    <meta name="author" content="CollapseTeam">
+    <meta property="og:title" content="CollapseLoader - Client loader">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://collapseloader.org">
+
+    <meta name="yandex-verification" content="1f5694e0da205153" />
+</head>
+
+<body onload="preloader()">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BKLGW9D" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Type 1337 -->
+
+    <video muted id="video" style="z-index: -1;" onended="revertChanges()">
+        <source src="../files/old/where_is_my_mind.mp4" type="video/mp4">
+    </video>
+
+    <div id="preloader_div">
+        <div id="preloader_spinner">
+            <img src="../files/img/collapse.svg" alt="Preloader" class="center" id="preloader">
+        </div>
+    </div>
+
+    <div class="center">
+        <!-- <img src="../files/img/collapse.svg" alt="CollapseLoader" id="logo" title="type 1337"> -->
+        <div id="logo">
+            <div id="container-animation"></div>
+        </div>
+
+        <div id="logo_text"></div>
+
+        <div id="text"></div>
+
+        <div class="buttons">
+            <a onclick="downloadLatestRelease()" id="download">download</a>
+            <a onclick="downloadDev()" id="downloadDev"><span style="color: #4a4aa4;">download (dev, latest)</span></a>
+            </br>
+            <a href="https://github.com/dest4590/CollapseLoader">github</a>
+            <a href="/discord" id="discord" target="_blank">discord</a>
+            <a href="/donate">donate</a>
+            <a href="https://web.collapseloader.org">api</a>
+            <a href="/" style="font-weight: bold;">NEW VERSION OF SITE</a>
+        </div>
+    </div>
+
+    <p class="left">By <a href="https://github.com/dest4590">dest4590</a> and <a
+            href="https://github.com/mtkusbdevice">mtkusbdevice</a> with ❤️</p>
+</body>
+
+</html>
