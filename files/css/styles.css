@@ -6,7 +6,7 @@ html.lenis body {
 body {
     color: white;
     text-rendering: optimizeLegibility;
-    font-family: ggsansRegular;
+    font-family: system-ui, sans-serif;
     margin: 0;
 }
 
@@ -197,7 +197,6 @@ a:hover {
 }
 
 .social-content h3 {
-    font-family: ProductSans;
     font-weight: 300;
 }
 
@@ -209,7 +208,7 @@ a:hover {
 }
 
 .social-content .social-links a {
-    margin-top: 0rem;
+    margin-top: 1rem;
 }
 
 .social-content .social-links img {
@@ -237,7 +236,6 @@ a:hover {
 }
 
 .security-content h3 {
-    font-family: ProductSans;
     font-weight: 300;
     display: flex;
     align-items: center;
@@ -264,7 +262,6 @@ a:hover {
 }
 
 .features-content h3 {
-    font-family: ProductSans;
     font-weight: 300;
     display: flex;
     align-items: center;
@@ -281,6 +278,7 @@ a:hover {
     background-color: #13151649;
     backdrop-filter: blur(5px);
     padding: 3rem 0 3rem 0;
+    text-align: center;
 }
 
 /* adaptivity */

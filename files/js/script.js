@@ -33,6 +33,9 @@ export async function load() {
         speed: 400,
         perspective: 600,
         scale: 1.03,
+        glare: true,
+        "max-glare": 0.05,
+        gyroscope: true
     });
 
     var stars = document.querySelector('.stars')

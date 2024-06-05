@@ -69,3 +69,9 @@ a:hover {
         margin-top: 2rem;
     }
 }
+
+@media only screen and (max-width: 560px) {
+    .buttons {
+        justify-content: center
+    }
+}
