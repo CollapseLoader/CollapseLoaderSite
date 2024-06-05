@@ -97,26 +97,6 @@ a:hover {
     animation: shine 2s infinite, animate 10s ease-in-out infinite alternate;
 }
 
-@keyframes shine {
-    from {
-        -webkit-mask-position: 150%;
-    }
-
-    to {
-        -webkit-mask-position: -50%;
-    }
-}
-
-@keyframes animate {
-    from {
-        background-position-x: center;
-    }
-
-    to {
-        background-position-x: right;
-    }
-}
-
 
 .content .small-text {
     font-family: ggsansRegular;
@@ -177,7 +157,29 @@ a:hover {
     color: white;
 }
 
-.social-content {
+@keyframes shine {
+    from {
+        -webkit-mask-position: 150%;
+    }
+
+    to {
+        -webkit-mask-position: -50%;
+    }
+}
+
+@keyframes animate {
+    from {
+        background-position-x: center;
+    }
+
+    to {
+        background-position-x: right;
+    }
+}
+
+/* Text block */
+
+.text-block {
     width: 90%;
     max-width: 800px;
     margin-left: auto;
@@ -185,19 +187,21 @@ a:hover {
     margin-bottom: 3rem;
 }
 
-.social-content h1 {
+.text-block h1 {
     display: flex;
     align-items: center;
 }
 
-.social-content h1 span {
+.text-block h1 span {
     font-size: 30px;
     margin-right: 0.5rem;
     color: #cae2ff;
 }
 
-.social-content h3 {
+.text-block h3 {
     font-weight: 300;
+    display: flex;
+    align-items: center;
 }
 
 .social-content .social-links {
@@ -216,56 +220,8 @@ a:hover {
     margin-right: 0.5rem;
 }
 
-.security-content {
-    width: 90%;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3rem;
-}
-
-.security-content h1 {
-    display: flex;
-    align-items: center;
-}
-
-.security-content h1 span {
-    font-size: 30px;
+#discord-online {
     margin-right: 0.5rem;
-    color: #cae2ff;
-}
-
-.security-content h3 {
-    font-weight: 300;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.features-content {
-    width: 90%;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3rem;
-}
-
-.features-content h1 {
-    display: flex;
-    align-items: center;
-}
-
-.features-content h1 span {
-    font-size: 30px;
-    margin-right: 0.5rem;
-    color: #cae2ff;
-}
-
-.features-content h3 {
-    font-weight: 300;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
 }
 
 .footer {
