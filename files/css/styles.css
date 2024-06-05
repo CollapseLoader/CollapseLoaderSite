@@ -204,6 +204,10 @@ a:hover {
     align-items: center;
 }
 
+.social-content h3 {
+    display: block;
+}
+
 .social-content .social-links {
     display: flex;
     flex-wrap: wrap;
@@ -217,10 +221,6 @@ a:hover {
 
 .social-content .social-links img {
     width: 20px;
-    margin-right: 0.5rem;
-}
-
-#discord-online {
     margin-right: 0.5rem;
 }
 
