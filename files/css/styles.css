@@ -54,6 +54,10 @@ a:hover {
 }
 
 .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     z-index: 0;
     width: 90%;
     max-width: 800px;
@@ -114,18 +118,17 @@ a:hover {
     margin: 0;
     font-family: ModernAge;
     font-weight: 500;
-    font-size: 8vw;
+    font-size: 10vw;
 }
 
 .content .top-content p:nth-child(1) {
     margin-bottom: -1rem;
-    text-indent: -1rem;
     letter-spacing: 14px;
 }
 
 .content .top-content p:nth-child(2) {
     font-family: Nordick;
-    letter-spacing: 5px;
+    letter-spacing: 14px;
     -webkit-text-fill-color: rgba(0, 0, 0, 0%);
     background: linear-gradient(90deg, rgba(0,196,241,1) 0%, rgba(0,48,179,1) 50%, rgba(170,0,199,1) 100%);
     background-clip: text;
@@ -151,6 +154,7 @@ a:hover {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .content .download-buttons a {

@@ -18,14 +18,7 @@ a:hover {
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
-    justify-content: space-around;
-}
-
-.buttons #header-logo {
-    font-family: ProductSansBold;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center
+    justify-content: space-evenly;
 }
 
 .buttons .header-buttons {
@@ -63,12 +56,13 @@ a:hover {
 
 @media only screen and (max-width: 560px) {
     .buttons {
-        justify-content: center
+        justify-content: center;
     }
 }
 
 @media screen and (max-width: 836px) {
     .buttons {
         justify-content: center;
+        flex-direction: column;
     }
 }
