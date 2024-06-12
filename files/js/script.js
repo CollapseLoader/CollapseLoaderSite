@@ -28,16 +28,6 @@ export async function load() {
 
     countUp.start();
 
-    VanillaTilt.init(document.querySelector('.showcase'), {
-        max: 20,
-        speed: 400,
-        perspective: 600,
-        scale: 1.03,
-        glare: true,
-        "max-glare": 0.05,
-        gyroscope: true
-    });
-
     var stars = document.querySelector('.stars')
     Array(15).keys().forEach((e) => {
         let div = document.createElement('div');
@@ -51,11 +41,6 @@ export async function load() {
 
         stars.appendChild(div);
     })
-
-
-    setTimeout(() => {
-        document.querySelector('.showcase-text').style.transform = 'translateZ(20px)'
-    }, 500);
 }
 
 export async function fetchJSON(url) {

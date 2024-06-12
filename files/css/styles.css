@@ -20,7 +20,7 @@ a {
 }
 
 a:hover {
-    text-decoration: underline
+    text-decoration: underline;
 }
 
 .button {
@@ -31,11 +31,11 @@ a:hover {
     background-color: #ffffffde;
     backdrop-filter: blur(5px);
 
-    border-radius: 40px;
+    border-radius: 5px;
     padding: 7px 14px;
     font-size: 16px;
     line-height: 24px;
-    transition: all .2s;
+    transition: all 0.5s;
     width: max-content;
     text-decoration: none !important;
     font-weight: 600;
@@ -48,7 +48,6 @@ a:hover {
 .button:active {
     transform: scale(0.95);
 }
-
 
 .material-symbols-outlined {
     margin-right: 0.3rem;
@@ -70,12 +69,10 @@ a:hover {
 }
 
 .content .text {
-    max-width: 22rem;
-    margin-top: 4rem;
-    padding-bottom: 6px;
     position: relative;
-    text-align: left;
-    font-size: 30px;
+    text-align: center;
+    font-size: 20px;
+    font-family: Lato;
 }
 
 .content .text h1 {
@@ -91,12 +88,14 @@ a:hover {
     background-clip: text;
 
     mask-size: 200%;
-    mask-image: linear-gradient(-75deg, rgba(0, 0, 0, .6) 30%, #000 50%, rgba(0, 0, 0, .6) 70%);
+    mask-image: linear-gradient(-75deg,
+            rgba(0, 0, 0, 0.6) 30%,
+            #000 50%,
+            rgba(0, 0, 0, 0.6) 70%);
     -webkit-text-stroke: 1px rgba(225, 225, 225, 0.308);
 
     animation: shine 2s infinite, animate 10s ease-in-out infinite alternate;
 }
-
 
 .content .small-text {
     font-family: ggsansRegular;
@@ -104,57 +103,78 @@ a:hover {
 }
 
 .content .top-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    text-align: center;
 }
 
-.content .showcase {
-    background-color: #181818;
-    transform-style: preserve-3d;
-    width: 400px;
-    height: 400px;
-    border-radius: 10px;
-    transform: perspective(1000px);
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+.content .top-content h1 {
+    user-select: none;
 }
 
-.content .showcase-text {
-    background-image: url("/files/img/showcase_text.png");
-    width: 400px;
-    height: 400px;
-    margin-left: 1rem;
-    transform: translateZ(0px);
-    transition: 500ms transform;
+.content .top-content p {
+    margin: 0;
+    font-family: ModernAge;
+    font-weight: 500;
+    font-size: 8vw;
 }
 
-.content .showcase-text:hover {
-    transform: translateZ(50px) !important;
+.content .top-content p:nth-child(1) {
+    margin-bottom: -1rem;
+    text-indent: -1rem;
+    letter-spacing: 14px;
+}
+
+.content .top-content p:nth-child(2) {
+    font-family: Nordick;
+    letter-spacing: 5px;
+    -webkit-text-fill-color: rgba(0, 0, 0, 0%);
+    background: linear-gradient(90deg, rgba(0,196,241,1) 0%, rgba(0,48,179,1) 50%, rgba(170,0,199,1) 100%);
+    background-clip: text;
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .content .download-buttons {
-    margin-top: 2rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
 .content .download-buttons a {
+    margin-top: 20px;
+
     font-size: large;
     padding: 16px 32px;
     font-weight: 600;
-    margin-right: 20px;
-    margin-top: 20px;
     cursor: pointer;
 }
 
 /* Download dev */
 .content .download-buttons a:nth-child(2) {
     margin-top: 1rem;
-    background-color: #ffffff3f;
+    border: 2px solid #434651;
+    background: #000000c9;
     backdrop-filter: blur(5px);
     color: white;
+}
+
+.content .download-buttons a:nth-child(2):hover {
+    border: 0px solid #434651;
+    background: #ffffffde;
+    color: #23272a;
 }
 
 @keyframes shine {
@@ -178,7 +198,6 @@ a:hover {
 }
 
 /* Text block */
-
 .text-block {
     width: 90%;
     max-width: 800px;
@@ -217,6 +236,7 @@ a:hover {
 
 .social-content .social-links a {
     margin-top: 1rem;
+    margin-left: 0.5rem;
 }
 
 .social-content .social-links img {
@@ -231,27 +251,14 @@ a:hover {
     flex-direction: column;
     margin-top: 2rem;
     height: 130px;
-    background-color: #13151649;
-    backdrop-filter: blur(5px);
     padding: 3rem 0 3rem 0;
     text-align: center;
 }
 
 /* adaptivity */
 @media only screen and (max-width: 500px) {
-    .content .showcase {
-        width: 200px;
-        height: 200px;
-    }
-
-    .content .showcase-text {
-        width: 200px;
-        height: 200px;
-        background-size: cover;
-    }
-
     .content .top-content {
-        justify-content: center
+        justify-content: center;
     }
 
     .buttons .header-buttons a {
@@ -270,39 +277,63 @@ a:hover {
 
 @media only screen and (max-width: 870px) {
     .content .top-content {
-        flex-direction: column
+        flex-direction: column;
     }
 }
 
-@media only screen and (max-width: 590px) {
+@media only screen and (max-width: 615px) {
     .social-content .social-links .button {
         font-size: 12px;
     }
-}
 
+    .content .top-content h1 p {
+        margin-block-start: 1rem;
+        margin-block-end: 1rem;
+    }
+}
 
 /* fonts */
 @font-face {
     font-family: ProductSans;
-    src: url("/files/fonts/ProductSansRegular.ttf");
+    src: url('/files/fonts/ProductSansRegular.woff2') format('woff2');
 }
 
 @font-face {
     font-family: ProductSansBold;
-    src: url("/files/fonts/ProductSansBold.ttf");
+    src: url('/files/fonts/ProductSansBold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: ggsansRegular;
-    src: url("/files/fonts/ggsansRegular.ttf");
+    src: url('/files/fonts/ggsansRegular.woff2') format('woff2');
 }
 
 @font-face {
     font-family: ggsansBold;
-    src: url("/files/fonts/ggsansBold.ttf");
+    src: url('/files/fonts/ggsansBold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: Raleway;
-    src: url("/files/fonts/Raleway.woff2") format("woff2");
+    src: url('/files/fonts/Raleway.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: Cadiz-Bold;
+    src: url('/files/fonts/Cadiz-Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: Cadiz-Regular;
+    src: url('/files/fonts/Cadiz-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: Nordick;
+    src: url('/files/fonts/Nordick.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: ModernAge;
+    src: url('/files/fonts/ModernAge.woff2') format('woff2');
 }
