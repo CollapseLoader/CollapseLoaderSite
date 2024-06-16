@@ -118,7 +118,7 @@ a:hover {
     margin: 0;
     font-family: ModernAge;
     font-weight: 500;
-    font-size: 10vw;
+    font-size: min(11vw, 130px);
 }
 
 .content .top-content p:nth-child(1) {
@@ -293,6 +293,12 @@ a:hover {
     .content .top-content h1 p {
         margin-block-start: 1rem;
         margin-block-end: 1rem;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .content .top-content p:nth-child(1) {
+        margin-bottom: 0;
     }
 }
 
