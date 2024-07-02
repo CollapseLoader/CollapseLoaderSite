@@ -87,7 +87,7 @@ a:hover {
     font-weight: 900;
     margin-bottom: 0;
 
-    background-image: url('/files/img/space.jpg');
+    background-image: url("/files/img/space.jpg");
     background-repeat: repeat;
     background-clip: text;
 
@@ -130,7 +130,10 @@ a:hover {
     font-family: Nordick;
     letter-spacing: 14px;
     -webkit-text-fill-color: rgba(0, 0, 0, 0%);
-    background: linear-gradient(90deg, rgba(0,196,241,1) 0%, rgba(0,48,179,1) 50%, rgba(170,0,199,1) 100%);
+    background: linear-gradient(90deg,
+            rgba(0, 196, 241, 1) 0%,
+            rgba(0, 48, 179, 1) 50%,
+            rgba(170, 0, 199, 1) 100%);
     background-clip: text;
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
@@ -213,6 +216,8 @@ a:hover {
 .text-block h1 {
     display: flex;
     align-items: center;
+    text-transform: uppercase;
+    justify-content: center;
 }
 
 .text-block h1 span {
@@ -224,11 +229,17 @@ a:hover {
 .text-block h3 {
     font-weight: 300;
     display: flex;
+    text-align: left;
     align-items: center;
+    justify-content: center;
 }
 
 .social-content h3 {
     display: block;
+}
+
+.social-content h2 {
+    text-align: center;
 }
 
 .social-content .social-links {
@@ -254,8 +265,8 @@ a:hover {
     align-items: center;
     flex-direction: column;
     margin-top: 2rem;
-    height: 130px;
-    padding: 3rem 0 3rem 0;
+    height: 65px;
+    padding: 1rem 0 3rem 0px;
     text-align: center;
 }
 
@@ -305,45 +316,45 @@ a:hover {
 /* fonts */
 @font-face {
     font-family: ProductSans;
-    src: url('/files/fonts/ProductSansRegular.woff2') format('woff2');
+    src: url("/files/fonts/ProductSansRegular.woff2") format("woff2");
 }
 
 @font-face {
     font-family: ProductSansBold;
-    src: url('/files/fonts/ProductSansBold.woff2') format('woff2');
+    src: url("/files/fonts/ProductSansBold.woff2") format("woff2");
 }
 
 @font-face {
     font-family: ggsansRegular;
-    src: url('/files/fonts/ggsansRegular.woff2') format('woff2');
+    src: url("/files/fonts/ggsansRegular.woff2") format("woff2");
 }
 
 @font-face {
     font-family: ggsansBold;
-    src: url('/files/fonts/ggsansBold.woff2') format('woff2');
+    src: url("/files/fonts/ggsansBold.woff2") format("woff2");
 }
 
 @font-face {
     font-family: Raleway;
-    src: url('/files/fonts/Raleway.woff2') format('woff2');
+    src: url("/files/fonts/Raleway.woff2") format("woff2");
 }
 
 @font-face {
     font-family: Cadiz-Bold;
-    src: url('/files/fonts/Cadiz-Bold.woff2') format('woff2');
+    src: url("/files/fonts/Cadiz-Bold.woff2") format("woff2");
 }
 
 @font-face {
     font-family: Cadiz-Regular;
-    src: url('/files/fonts/Cadiz-Regular.woff2') format('woff2');
+    src: url("/files/fonts/Cadiz-Regular.woff2") format("woff2");
 }
 
 @font-face {
     font-family: Nordick;
-    src: url('/files/fonts/Nordick.woff2') format('woff2');
+    src: url("/files/fonts/Nordick.woff2") format("woff2");
 }
 
 @font-face {
     font-family: ModernAge;
-    src: url('/files/fonts/ModernAge.woff2') format('woff2');
+    src: url("/files/fonts/ModernAge.woff2") format("woff2");
 }
