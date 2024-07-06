@@ -264,10 +264,13 @@ a:hover {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 2rem;
     height: 65px;
     padding: 1rem 0 3rem 0px;
     text-align: center;
+}
+
+.footer h1 {
+    margin-bottom: 0;
 }
 
 /* adaptivity */
