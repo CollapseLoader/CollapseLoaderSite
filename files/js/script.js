@@ -28,6 +28,8 @@ export async function load() {
 
     countUp.start();
 
+    document.getElementById('codename').innerText = getCodeName();
+
     var stars = document.querySelector('.stars')
     Array(15).keys().forEach((e) => {
         let div = document.createElement('div');
@@ -133,6 +135,20 @@ function onVisible(element, callback) {
         });
     }).observe(element);
     if (!callback) return new Promise(r => callback = r);
+}
+
+function getCodeName() {
+    fetch("https://raw.githubusercontent.com/dest4590/CollapseLoader/main/collapse/static.py")
+        .then(response => response.text())
+        .then(data => {
+            const codenameMatch = data.match(/CODENAME\s*=\s*['"](.+?)['"]/);
+            const codename = codenameMatch ? codenameMatch[1] : null;
+            return codename
+        })
+        .catch(error => {
+            console.error('Error fetching codename:', error);
+            return 'Unknown'
+        });
 }
 
 onVisible(document.querySelector(".footer"), async () => {
