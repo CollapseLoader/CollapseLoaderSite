@@ -29,7 +29,8 @@ export async function load() {
     countUp.start();
 
     getCodeName().then(codename => {
-        document.getElementById('codename').innerText = codename;
+        document.getElementById('codename').innerText = codename
+        fadeInText('codename');
     });
 
     var stars = document.querySelector('.stars')
@@ -151,6 +152,17 @@ async function getCodeName() {
     }
 }
 
+function fadeInText(elementId) {
+    var elem = document.getElementById(elementId);
+
+    setTimeout(() => {
+        elem.style.height = '33px'
+    }, 1000);
+
+    setTimeout(() => {
+        elem.style.opacity = 1
+    }, 1500);
+}
 onVisible(document.querySelector(".footer"), async () => {
     fetch("https://api.github.com/repos/dest4590/CollapseLoader/commits")
         .then(response => response.json())
