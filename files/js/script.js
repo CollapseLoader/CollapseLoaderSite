@@ -28,7 +28,9 @@ export async function load() {
 
     countUp.start();
 
-    document.getElementById('codename').innerText = getCodeName();
+    getCodeName().then(codename => {
+        document.getElementById('codename').innerText = codename;
+    });
 
     var stars = document.querySelector('.stars')
     Array(15).keys().forEach((e) => {
@@ -137,18 +139,16 @@ function onVisible(element, callback) {
     if (!callback) return new Promise(r => callback = r);
 }
 
-function getCodeName() {
-    fetch("https://raw.githubusercontent.com/dest4590/CollapseLoader/main/collapse/static.py")
-        .then(response => response.text())
-        .then(data => {
-            const codenameMatch = data.match(/CODENAME\s*=\s*['"](.+?)['"]/);
-            const codename = codenameMatch ? codenameMatch[1] : null;
-            return codename
-        })
-        .catch(error => {
-            console.error('Error fetching codename:', error);
-            return 'Unknown'
-        });
+async function getCodeName() {
+    try {
+        const response = await fetch("https://raw.githubusercontent.com/dest4590/CollapseLoader/main/collapse/static.py");
+        const data = await response.text();
+        const codenameMatch = data.match(/CODENAME\s*=\s*['"](.+?)['"]/);
+        return codenameMatch ? codenameMatch[1] : 'Unknown';
+    } catch (error) {
+        console.error('Error fetching codename:', error);
+        return 'Unknown';
+    }
 }
 
 onVisible(document.querySelector(".footer"), async () => {

@@ -92,6 +92,13 @@ a:hover {
     user-select: none;
 }
 
+.content .top-content h3 {
+    color: rgba(0, 48, 179, 1);
+    font-family: monospace;
+    font-size: 3vh;
+    margin: 0;
+}
+
 .content .top-content p {
     margin: 0;
     font-family: ModernAge;
