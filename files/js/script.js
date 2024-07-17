@@ -28,6 +28,11 @@ export async function load() {
 
     countUp.start();
 
+    getCodeName().then(codename => {
+        document.getElementById('codename').innerText = codename
+        fadeInText('codename');
+    });
+
     var stars = document.querySelector('.stars')
     Array(15).keys().forEach((e) => {
         let div = document.createElement('div');
@@ -135,6 +140,29 @@ function onVisible(element, callback) {
     if (!callback) return new Promise(r => callback = r);
 }
 
+async function getCodeName() {
+    try {
+        const response = await fetch("https://raw.githubusercontent.com/dest4590/CollapseLoader/main/collapse/static.py");
+        const data = await response.text();
+        const codenameMatch = data.match(/CODENAME\s*=\s*['"](.+?)['"]/);
+        return codenameMatch ? codenameMatch[1] : 'Unknown';
+    } catch (error) {
+        console.error('Error fetching codename:', error);
+        return 'Unknown';
+    }
+}
+
+function fadeInText(elementId) {
+    var elem = document.getElementById(elementId);
+
+    setTimeout(() => {
+        elem.style.height = '33px'
+    }, 1000);
+
+    setTimeout(() => {
+        elem.style.opacity = 1
+    }, 1500);
+}
 onVisible(document.querySelector(".footer"), async () => {
     fetch("https://api.github.com/repos/dest4590/CollapseLoader/commits")
         .then(response => response.json())
