@@ -28,7 +28,17 @@ export async function load() {
 
     countUp.start();
 
+    getLatestRelease().then(version => {
+        document.querySelector('#stable').innerText = `Version: ${version}`
+    });
+
+    getLatestCommit().then(commit => {
+        document.querySelector('#dev').innerText = `Commit: ${commit}`
+    });
+
+
     getCodeName().then(codename => {
+        document.codename = codename
         document.getElementById('codename').innerText = codename
         fadeInText('codename');
     });
@@ -88,7 +98,7 @@ async function getLatestRelease() {
         const releases = data.filter(release => !release.prerelease && !release.draft);
         if (releases.length > 0) {
             const latestRelease = releases[0];
-            document.getElementById('download').innerText = `download ${latestRelease.tag_name}`;
+            return latestRelease.tag_name
         } else {
             console.log('No stable releases found.');
         }
@@ -163,6 +173,16 @@ function fadeInText(elementId) {
         elem.style.opacity = 1
     }, 1500);
 }
+
+async function showVersion(hover, e) {
+    const version = e.querySelector('p');
+    if (hover) {
+        version.style.opacity = 1
+    }
+    else {
+        version.style.opacity = 0
+    }
+}
 onVisible(document.querySelector(".footer"), async () => {
     fetch("https://api.github.com/repos/dest4590/CollapseLoader/commits")
         .then(response => response.json())
@@ -181,3 +201,4 @@ onVisible(document.querySelector(".footer"), async () => {
 document.loader = load
 document.downloadLatestRelease = downloadLatestRelease
 document.downloadDev = downloadDev
+document.showVersion = showVersion

@@ -24,8 +24,7 @@ a:hover {
 }
 
 .button {
-    display: flex;
-    align-items: center;
+    display: block;
 
     color: #23272a;
     background-color: #ffffffde;
@@ -35,6 +34,7 @@ a:hover {
     padding: 7px 14px;
     font-size: 16px;
     line-height: 24px;
+    height: 24px;
     transition: all 0.5s;
     width: max-content;
     text-decoration: none !important;
@@ -51,6 +51,11 @@ a:hover {
 
 .material-symbols-outlined {
     margin-right: 0.3rem;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
 }
 
 .content {
@@ -164,20 +169,20 @@ a:hover {
     cursor: pointer;
 }
 
-/* Download dev */
-.content .download-buttons a:nth-child(2) {
-    margin-top: 1rem;
-    border: 2px solid #434651;
-    background: #000000c9;
-    backdrop-filter: blur(5px);
-    color: white;
+.content .download-buttons p {
+    opacity: 0;
+    margin: 0.5rem;
+    transition: opacity 500ms;
 }
 
-/* Source Code */
-.content .download-buttons a:nth-child(2):hover {
-    border: 0px solid #434651;
-    background: #ffffffde;
-    color: #23272a;
+.content .download-buttons a:hover:nth-child(1) {
+    height: 54px;
+    padding-top: 16px;
+}
+
+.content .download-buttons a:hover:nth-child(2) {
+    height: 54px;
+    padding-top: 16px;
 }
 
 @keyframes shine {
