@@ -2,68 +2,39 @@ import { CountUp } from '/files/js/libraries/countUp.min.js';
 import { Odometer } from '/files/js/libraries/odometer.min.js';
 
 export async function load() {
-    document.OSName = "Unknown";
-    const userAgent = window.navigator.userAgent;
-    if (userAgent.includes("Windows")) document.OSName = "Windows";
-    if (userAgent.includes("Mac")) document.OSName = "Mac/iOS";
-    if (userAgent.includes("X11")) document.OSName = "UNIX";
-    if (userAgent.includes("Linux")) document.OSName = "Linux";
-
-    const lenis = new Lenis()
+    setOSName();
+    const lenis = new Lenis();
 
     function raf(time) {
-        lenis.raf(time)
-        requestAnimationFrame(raf)
+        lenis.raf(time);
+        requestAnimationFrame(raf);
     }
+    requestAnimationFrame(raf);
 
-    requestAnimationFrame(raf)
-
-    var countUp = new CountUp('discord-online',
-        await getDiscordOnline(),
-
-        {
-            plugin: new Odometer({ duration: 1.5, lastDigitDelay: 1 })
-        }
-    );
-
+    const countUp = new CountUp('discord-online', await getDiscordOnline(), {
+        plugin: new Odometer({ duration: 1.5, lastDigitDelay: 1 })
+    });
     countUp.start();
 
-    getLatestRelease().then(version => {
-        document.querySelector('#stable').innerText = `Version: ${version}`
-    });
+    updateElementText('#stable', `Version: ${await getLatestRelease()}`);
+    updateElementText('#dev', `Commit: ${await getLatestCommit()}`);
+    updateElementText('#codename', await getCodeName(), fadeInText);
 
-    getLatestCommit().then(commit => {
-        document.querySelector('#dev').innerText = `Commit: ${commit}`
-    });
-
-
-    getCodeName().then(codename => {
-        document.codename = codename
-        document.getElementById('codename').innerText = codename
-        fadeInText('codename');
-    });
-
-    var stars = document.querySelector('.stars')
-    Array(15).keys().forEach((e) => {
-        let div = document.createElement('div');
-        div.className = 'star';
-
-        let topOffset = Math.random() * 100 + 'vh';
-        let fallDelay = Math.random() * 5 + 's';
-
-        div.style.setProperty('--top-offset', topOffset);
-        div.style.setProperty('--fall-delay', fallDelay);
-
-        stars.appendChild(div);
-    })
+    addStars('.stars', 15);
 }
 
-export async function fetchJSON(url) {
+function setOSName() {
+    const userAgent = window.navigator.userAgent;
+    document.OSName = /Windows/.test(userAgent) ? "Windows" :
+        /Mac/.test(userAgent) ? "Mac/iOS" :
+            /X11/.test(userAgent) ? "UNIX" :
+                /Linux/.test(userAgent) ? "Linux" : "Unknown";
+}
+
+async function fetchJSON(url) {
     try {
         const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         return await response.json();
     } catch (error) {
         console.error(`Error fetching ${url}:`, error);
@@ -73,38 +44,18 @@ export async function fetchJSON(url) {
 
 async function getDiscordOnline() {
     const data = await fetchJSON('https://discord.com/api/guilds/1231330785852653568/widget.json');
-    if (data && data.presence_count !== undefined) {
-        return await data.presence_count
-
-    } else {
-        console.log('Invalid data received from Discord API.');
-        return 0
-    }
+    return data?.presence_count ?? 0;
 }
 
 async function getLatestCommit() {
     const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits");
-    if (data && data.length > 0) {
-        const latest_commit = data[0];
-        return latest_commit.sha.slice(0, 7);
-    } else {
-        return '???'
-    }
+    return data?.[0]?.sha.slice(0, 7) ?? '???';
 }
 
 async function getLatestRelease() {
     const data = await fetchJSON('https://api.github.com/repos/dest4590/CollapseLoader/releases');
-    if (data && data.length > 0) {
-        const releases = data.filter(release => !release.prerelease && !release.draft);
-        if (releases.length > 0) {
-            const latestRelease = releases[0];
-            return latestRelease.tag_name
-        } else {
-            console.log('No stable releases found.');
-        }
-    } else {
-        console.log('No releases found.');
-    }
+    const releases = data?.filter(release => !release.prerelease && !release.draft) ?? [];
+    return releases?.[0]?.tag_name ?? '???';
 }
 
 function alertCompatibility() {
@@ -115,27 +66,15 @@ function alertCompatibility() {
 
 async function downloadLatestRelease() {
     alertCompatibility();
-
     const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/releases/latest");
-    if (data && data.assets && data.assets.length > 0) {
-        window.open(data.assets[0].browser_download_url, "_blank");
-    } else {
-        console.log('No assets found in the latest release.');
-    }
+    window.open(data?.assets?.[0]?.browser_download_url ?? '', "_blank");
 }
 
 async function downloadDev() {
     alertCompatibility();
-
     const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/releases");
-    if (data) {
-        const latestPrerelease = data.find(release => release.prerelease);
-        if (latestPrerelease && latestPrerelease.assets && latestPrerelease.assets.length > 0) {
-            window.open(latestPrerelease.assets[0].browser_download_url, "_blank");
-        } else {
-            console.log('No pre-release assets found.');
-        }
-    }
+    const latestPrerelease = data?.find(release => release.prerelease);
+    window.open(latestPrerelease?.assets?.[0]?.browser_download_url ?? '', "_blank");
 }
 
 function onVisible(element, callback) {
@@ -147,7 +86,6 @@ function onVisible(element, callback) {
             }
         });
     }).observe(element);
-    if (!callback) return new Promise(r => callback = r);
 }
 
 async function getCodeName() {
@@ -163,42 +101,42 @@ async function getCodeName() {
 }
 
 function fadeInText(elementId) {
-    var elem = document.getElementById(elementId);
-
-    setTimeout(() => {
-        elem.style.height = '33px'
-    }, 1000);
-
-    setTimeout(() => {
-        elem.style.opacity = 1
-    }, 1500);
+    const elem = document.querySelector(elementId);
+    setTimeout(() => { elem.style.height = '67px'; }, 1000);
+    setTimeout(() => { elem.style.opacity = 1; }, 1500);
 }
 
 async function showVersion(hover, e) {
     const version = e.querySelector('p');
-    if (hover) {
-        version.style.opacity = 1
-    }
-    else {
-        version.style.opacity = 0
+    version.style.opacity = hover ? 1 : 0;
+}
+
+function addStars(containerSelector, count) {
+    const container = document.querySelector(containerSelector);
+    Array.from({ length: count }).forEach(() => {
+        const div = document.createElement('div');
+        div.className = 'star';
+        div.style.setProperty('--top-offset', `${Math.random() * 100}vh`);
+        div.style.setProperty('--fall-delay', `${Math.random() * 5}s`);
+        container.appendChild(div);
+    });
+}
+
+function updateElementText(selector, text, callback) {
+    const element = document.querySelector(selector);
+    if (element) {
+        element.innerText = text;
+        if (callback) callback(selector);
     }
 }
+
 onVisible(document.querySelector(".footer"), async () => {
-    fetch("https://api.github.com/repos/dest4590/CollapseLoader/commits")
-        .then(response => response.json())
-        .then(data => {
-            if (data && data.length > 0) {
-                document.querySelector('.footer h1').innerHTML = `CollapseLoader <a href="https://github.com/dest4590/CollapseLoader/commit/${data[0].sha}" target="_blank">(${data[0].sha.slice(0, 7)})`
-            } else {
-                document.querySelector('.footer h1').innerText = `CollapseLoader (???)`
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching commits:', error);
-        });
+    const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits");
+    const commitSha = data?.[0]?.sha.slice(0, 7) ?? '???';
+    document.querySelector('.footer h1').innerHTML = `CollapseLoader <a href="https://github.com/dest4590/CollapseLoader/commit/${commitSha}" target="_blank">(${commitSha})</a>`;
 });
 
-document.loader = load
-document.downloadLatestRelease = downloadLatestRelease
-document.downloadDev = downloadDev
-document.showVersion = showVersion
+document.loader = load;
+document.downloadLatestRelease = downloadLatestRelease;
+document.downloadDev = downloadDev;
+document.showVersion = showVersion;
