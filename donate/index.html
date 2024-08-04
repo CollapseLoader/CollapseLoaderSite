@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CollapseLoader - Donate</title>
 
-        <link rel="stylesheet" href="../files/old/css/styles.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap">
-            
-        <meta name="darkreader-lock">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollapseLoader - Donate</title>
 
-        <script src="../files/old/js/core.js"></script>
-        <script src="../files/old/js/script.js"></script>
+    <link rel="stylesheet" href="../files/css/styles.css">
+    <link rel="stylesheet" href="../files/css/background.css">
+    
+    <meta name="darkreader-lock">
+    <script src="../files/js/script.js" type="module"></script>
 
-        <link rel="icon" type="image/x-icon" href="../files/img/collapse.svg">
-    </head>
+    <link rel="icon" type="image/x-icon" href="../files/img/collapse.svg">
+</head>
 
-    <body onload="preloader()">
-        <div id="preloader_div">
-            <div id="preloader_spinner">
-                <img src="../files/img/collapsemoney.svg" alt="Preloader" class="center" id="preloader">
-            </div>
+<body onload="document.loader()">
+    <div class="stars"></div>
+    
+    <div class="center">
+        <h2>we are very grateful to donate, you help the project to develop further 💖</h2>
+
+        <div class="donate-buttons">
+            <a class="button" onclick="document.copyCrypto('ton')" href="#"><span class="flex-center"><img
+                        src="../files/img/toncoin.svg" alt="TonCoin">TON</span></a>
+            <a class="button" onclick="document.copyCrypto('usdt')" href="#"><span class="flex-center"><img
+                        src="../files/img/usdt.svg" alt="USDT">USDT</span></a>
+            <a class="button" href="https://send.monobank.ua/jar/35StkEVijh" target="_blank"><span
+                    class="flex-center"><img src="../files/img/monobank.jpeg" alt="Monobank"
+                        style="border-radius: 4px;">Monobank</span></a>
+            <a class="button" href="https://www.donationalerts.com/r/dest4590" target="_blank"><span
+                    class="flex-center"><img src="../files/img/donationalerts.svg"
+                        alt="Donationalerts">Donationalerts</span></a>
         </div>
-
-        <div class="center">
-            <h2>any donations are worth a lot to us 💜</h2>
-
-            <div class="buttons">
-                <a onclick="copyCrypto('ton')"><img src="../files/img/toncoin.svg" alt="TonCoin">TON</a>
-                <a onclick="copyCrypto('usdt')"><img src="../files/img/usdt.svg" alt="USDT">USDT</a>
-            </div>
-
-        </div>
-
-        <p class="left">By <a href="https://github.com/dest4590">dest4590</a> and <a href="https://github.com/mtkusbdevice">mtkusbdevice</a> with ❤️</p>
-    </body>
+    </div>
+</body>
 </html>

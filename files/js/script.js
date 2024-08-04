@@ -3,24 +3,35 @@ import { Odometer } from '/files/js/libraries/odometer.min.js';
 
 export async function load() {
     setOSName();
-    const lenis = new Lenis();
-
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    const countUp = new CountUp('discord-online', await getDiscordOnline(), {
-        plugin: new Odometer({ duration: 1.5, lastDigitDelay: 1 })
-    });
-    countUp.start();
-
-    updateElementText('#stable', `Version: ${await getLatestRelease()}`);
-    updateElementText('#dev', `Commit: ${await getLatestCommit()}`);
-    updateElementText('#codename', await getCodeName(), fadeInText);
-
+    
     addStars('.stars', 15);
+    
+    if (location.pathname === '/') {
+        const lenis = new Lenis();
+    
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+        
+        const countUp = new CountUp('discord-online', await getDiscordOnline(), {
+            plugin: new Odometer({ duration: 1.5, lastDigitDelay: 1 })
+        });
+        countUp.start();
+
+        updateElementText('#stable', `Version: ${await getLatestRelease()}`);
+        updateElementText('#dev', `Commit: ${await getLatestCommit()}`);
+        updateElementText('#codename', await getCodeName(), fadeInText);
+
+        onVisible(document.querySelector(".footer"), async () => {
+            const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits");
+            const commitSha = data?.[0]?.sha.slice(0, 7) ?? '???';
+            document.querySelector('.footer h1').innerHTML = `CollapseLoader <a href="https://github.com/dest4590/CollapseLoader/commit/${commitSha}" target="_blank">(${commitSha})</a>`;
+        });
+    } else if (location.pathname.startsWith('/donate')) {
+
+    }
 }
 
 function setOSName() {
@@ -130,13 +141,30 @@ function updateElementText(selector, text, callback) {
     }
 }
 
-onVisible(document.querySelector(".footer"), async () => {
-    const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits");
-    const commitSha = data?.[0]?.sha.slice(0, 7) ?? '???';
-    document.querySelector('.footer h1').innerHTML = `CollapseLoader <a href="https://github.com/dest4590/CollapseLoader/commit/${commitSha}" target="_blank">(${commitSha})</a>`;
-});
+function copyCrypto(crypto) {
+    const walletAddresses = {
+        'ton': "UQAIAReD2gT6KaXyf88qOPiXh8jqL01bPMJ3TVy_S5DriAEe",
+        'usdt': "TMnSnK2cCXhppLES4uaMKTXMNhwDBhgAcR"
+    };
+
+    const walletAddress = walletAddresses[crypto];
+    if (!walletAddress) {
+        alert('Invalid cryptocurrency selected');
+        return;
+    }
+
+    navigator.clipboard.writeText(walletAddress)
+        .then(() => {
+            alert('Crypto wallet copied to clipboard');
+        })
+        .catch(err => {
+            console.error('Failed to copy text: ', err);
+            alert('Failed to copy text to clipboard');
+        });
+}
 
 document.loader = load;
 document.downloadLatestRelease = downloadLatestRelease;
 document.downloadDev = downloadDev;
 document.showVersion = showVersion;
+document.copyCrypto = copyCrypto;

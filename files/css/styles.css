@@ -1,13 +1,69 @@
+/* Variables */
+:root {
+    --color-white: white;
+    --color-dark: #23272a;
+    --color-light: #ffffffde;
+    --color-link: rgb(222, 197, 255);
+    --color-gradient-start: rgba(0, 196, 241, 1);
+    --color-gradient-middle: rgba(170, 0, 199, 1);
+    --color-gradient-end: rgba(0, 48, 179, 1);
+    --font-size-large: large;
+    --font-size-16: 16px;
+    --font-size-20: 20px;
+    --font-size-30: 30px;
+    --font-size-49: 49px;
+    --font-weight-300: 300;
+    --font-weight-500: 500;
+    --font-weight-600: 600;
+    --line-height-24: 24px;
+    --transition-500ms: 500ms;
+    --transition-1s: 1s;
+    --transition-all: all 0.5s;
+    --backdrop-blur: blur(5px);
+    --border-radius-5: 5px;
+    --padding-7-14: 7px 14px;
+    --padding-16-32: 16px 32px;
+    --padding-1-3rem: 1.3rem;
+    --padding-1rem: 1rem;
+    --padding-0: 0;
+    --margin-0: 0;
+    --margin-auto: auto;
+    --margin-0-5rem: 0.5rem;
+    --margin-1rem: 1rem;
+    --margin-3rem: 3rem;
+    --gap-2rem: 2rem;
+    --height-24: 24px;
+    --height-48: 48px;
+    --width-50: 50%;
+    --width-90: 90%;
+    --width-130: 130px;
+    --width-160: 160px;
+    --width-40: 40px;
+    --width-20: 20px;
+    --max-width-800: 800px;
+    --max-width-22rem: 22rem;
+    --letter-spacing-14: 14px;
+    --z-index-0: 0;
+    --opacity-0: 0;
+    --background-clip-text: text;
+    --background-size: 400% 400%;
+    --animation-gradient: gradient 10s ease infinite;
+    --animation-shine: shine 10s ease infinite;
+    --animation-animate: animate 10s ease infinite;
+}
+
+/* Base styles */
 html.lenis,
 html.lenis body {
     height: auto;
 }
 
-body {
-    color: white;
+html, body {
+    color: var(--color-white);
     text-rendering: optimizeLegibility;
     font-family: system-ui, sans-serif;
-    margin: 0;
+    margin: var(--margin-0);
+    height: 100%;
 }
 
 * {
@@ -16,29 +72,28 @@ body {
 
 a {
     text-decoration: none;
-    color: rgb(222, 197, 255);
+    color: var(--color-link);
 }
 
 a:hover {
     text-decoration: underline;
 }
 
+/* Button styles */
 .button {
     display: block;
-
-    color: #23272a;
-    background-color: #ffffffde;
-    backdrop-filter: blur(5px);
-
-    border-radius: 5px;
-    padding: 7px 14px;
-    font-size: 16px;
-    line-height: 24px;
-    height: 24px;
-    transition: all 0.5s;
+    color: var(--color-dark);
+    background-color: var(--color-light);
+    backdrop-filter: var(--backdrop-blur);
+    border-radius: var(--border-radius-5);
+    padding: var(--padding-7-14);
+    font-size: var(--font-size-16);
+    line-height: var(--line-height-24);
+    height: var(--height-24);
+    transition: var(--transition-all);
     width: max-content;
     text-decoration: none !important;
-    font-weight: 600;
+    font-weight: var(--font-weight-600);
 }
 
 .button:hover {
@@ -49,45 +104,87 @@ a:hover {
     transform: scale(0.95);
 }
 
-.material-symbols-outlined {
-    margin-right: 0.3rem;
+/* Donate buttons */
+.donate-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--gap-2rem);
 }
 
+.donate-buttons .button {
+    display: flex;
+    justify-content: center;
+    width: var(--width-130);
+    padding: var(--padding-1-3rem);
+    height: var(--height-48);
+    backdrop-filter: var(--backdrop-blur);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-white);
+}
+
+.donate-buttons .button img {
+    width: var(--width-40);
+    height: var(--height-40);
+    margin-right: var(--margin-0-5rem);
+}
+
+/* Center styles */
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: var(--width-50);
+    height: 100%;
+    margin: var(--margin-auto);
+}
+
+.center h2 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: Lato;
+}
+
+/* Flex center */
 .flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* Content styles */
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    z-index: 0;
-    width: 90%;
-    max-width: 800px;
-    margin-top: 3rem;
-    margin-left: auto;
-    margin-right: auto;
+    z-index: var(--z-index-0);
+    width: var(--width-90);
+    max-width: var(--max-width-800);
+    margin-top: var(--margin-3rem);
+    margin-left: var(--margin-auto);
+    margin-right: var(--margin-auto);
     position: relative;
-    padding-bottom: 1rem;
+    padding-bottom: var(--padding-1rem);
 }
 
 .content .text-content {
-    max-width: 22rem;
+    max-width: var(--max-width-22rem);
 }
 
 .content .text {
     position: relative;
     text-align: center;
-    font-size: 20px;
+    font-size: var(--font-size-20);
     font-family: Lato;
 }
 
 .content .small-text {
     font-family: ggsansRegular;
-    font-size: 20px;
+    font-size: var(--font-size-20);
 }
 
 .content .top-content {
@@ -99,56 +196,48 @@ a:hover {
 }
 
 #codename {
-    color: rgba(0, 48, 179, 1);
+    color: var(--color-gradient-end);
     font-family: ggsansBold;
-    font-size: 49px;
-    opacity: 0;
-    height: 0;
-    margin: 0;
-    background: linear-gradient(90deg,
-            rgba(0, 196, 241, 1) 0%,
-            rgba(170, 0, 199, 1) 50%,
-            rgba(0, 48, 179, 1) 100%);
-    background-clip: text;
-    background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
-    transition: 1s all cubic-bezier(.19, 1.02, .58, 1);
+    font-size: var(--font-size-49);
+    opacity: var(--opacity-0);
+    height: var(--opacity-0);
+    margin: var(--margin-0);
+    background: linear-gradient(90deg, var(--color-gradient-start) 0%, var(--color-gradient-middle) 50%, var(--color-gradient-end) 100%);
+    background-clip: var(--background-clip-text);
+    background-size: var(--background-size);
+    animation: var(--animation-gradient);
+    transition: var(--transition-1s) all cubic-bezier(.19, 1.02, .58, 1);
 }
 
 .content .top-content p {
-    margin: 0;
+    margin: var(--margin-0);
     font-family: ModernAge;
-    font-weight: 500;
+    font-weight: var(--font-weight-500);
     font-size: min(11vw, 130px);
 }
 
 .content .top-content p:nth-child(1) {
     margin-bottom: -1rem;
-    letter-spacing: 14px;
+    letter-spacing: var(--letter-spacing-14);
 }
 
 .content .top-content p:nth-child(2) {
     font-family: Nordick;
-    letter-spacing: 14px;
+    letter-spacing: var(--letter-spacing-14);
     -webkit-text-fill-color: rgba(0, 0, 0, 0%);
-    background: linear-gradient(90deg,
-            rgba(0, 196, 241, 1) 0%,
-            rgba(0, 48, 179, 1) 50%,
-            rgba(170, 0, 199, 1) 100%);
-    background-clip: text;
-    background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
+    background: linear-gradient(90deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 50%, var(--color-gradient-middle) 100%);
+    background-clip: var(--background-clip-text);
+    background-size: var(--background-size);
+    animation: var(--animation-gradient);
 }
 
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
     }
-
     50% {
         background-position: 100% 50%;
     }
-
     100% {
         background-position: 0% 50%;
     }
@@ -162,35 +251,29 @@ a:hover {
 }
 
 .content .download-buttons a {
-    margin-top: 20px;
-
-    font-size: large;
-    padding: 16px 32px;
-    font-weight: 600;
+    margin-top: var(--margin-1rem);
+    font-size: var(--font-size-large);
+    padding: var(--padding-16-32);
+    font-weight: var(--font-weight-600);
     cursor: pointer;
 }
 
 .content .download-buttons p {
-    opacity: 0;
-    margin: 0.5rem;
-    transition: opacity 500ms;
+    opacity: var(--opacity-0);
+    margin: var(--margin-0-5rem);
+    transition: opacity var(--transition-500ms);
 }
 
-.content .download-buttons a:hover:nth-child(1) {
-    height: 54px;
-    padding-top: 16px;
-}
-
+.content .download-buttons a:hover:nth-child(1),
 .content .download-buttons a:hover:nth-child(2) {
     height: 54px;
-    padding-top: 16px;
+    padding-top: var(--padding-1rem);
 }
 
 @keyframes shine {
     from {
         -webkit-mask-position: 150%;
     }
-
     to {
         -webkit-mask-position: -50%;
     }
@@ -200,7 +283,6 @@ a:hover {
     from {
         background-position-x: center;
     }
-
     to {
         background-position-x: right;
     }
@@ -208,11 +290,11 @@ a:hover {
 
 /* Text block */
 .text-block {
-    width: 90%;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3rem;
+    width: var(--width-90);
+    max-width: var(--max-width-800);
+    margin-left: var(--margin-auto);
+    margin-right: var(--margin-auto);
+    margin-bottom: var(--margin-3rem);
 }
 
 .text-block h1 {
@@ -223,13 +305,13 @@ a:hover {
 }
 
 .text-block h1 span {
-    font-size: 30px;
-    margin-right: 0.5rem;
+    font-size: var(--font-size-30);
+    margin-right: var(--margin-0-5rem);
     color: #cae2ff;
 }
 
 .text-block h3 {
-    font-weight: 300;
+    font-weight: var(--font-weight-300);
     display: flex;
     text-align: left;
     align-items: center;
@@ -240,6 +322,7 @@ a:hover {
     display: contents;
 }
 
+/* Social content */
 .social-content h3 {
     display: block;
 }
@@ -252,51 +335,50 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
-    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    gap: var(--gap-2rem);
+    margin-top: var(--margin-0-5rem);
 }
 
 .social-links .button {
-    margin-top: 1rem;
-    width: 160px;
+    margin-top: var(--margin-1rem);
+    width: var(--width-160);
 }
 
 .social-links img {
-    width: 20px;
-    margin-right: 0.5rem;
+    width: var(--width-20);
+    margin-right: var(--margin-0-5rem);
 }
 
+/* Footer */
 .footer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 65px;
-    padding: 1rem 0 3rem 0px;
+    padding: var(--padding-1rem) 0 3rem 0;
     text-align: center;
 }
 
 .footer h1 {
-    margin-bottom: 0;
+    margin-bottom: var(--margin-0);
 }
 
-/* adaptivity */
+/* Adaptivity */
 @media only screen and (max-width: 500px) {
     .content .top-content {
         justify-content: center;
     }
-
     .buttons .header-buttons a {
-        padding: 0;
+        padding: var(--padding-0);
     }
-
     .button {
         line-height: 14px;
         font-size: 14px;
     }
-
     .content .text {
-        font-size: 20px;
+        font-size: var(--font-size-20);
     }
 }
 
@@ -310,20 +392,19 @@ a:hover {
     .social-content .social-links .button {
         font-size: 12px;
     }
-
     .content .top-content h1 p {
-        margin-block-start: 1rem;
-        margin-block-end: 1rem;
+        margin-block-start: var(--margin-1rem);
+        margin-block-end: var(--margin-1rem);
     }
 }
 
 @media only screen and (max-width: 420px) {
     .content .top-content p:nth-child(1) {
-        margin-bottom: 0;
+        margin-bottom: var(--margin-0);
     }
 }
 
-/* fonts */
+/* Fonts */
 @font-face {
     font-family: ProductSans;
     src: url("/files/fonts/ProductSansRegular.woff2") format("woff2");
