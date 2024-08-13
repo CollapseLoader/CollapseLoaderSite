@@ -1,0 +1,134 @@
+/* Variables */
+:root {
+    --color-white: white;
+    --color-dark: #23272a;
+    --color-light: #ffffffde;
+    --color-link: rgb(222, 197, 255);
+    --font-size-16: 16px;
+    --font-weight-600: 600;
+    --line-height-24: 24px;
+    --transition-all: all 0.5s;
+    --backdrop-blur: blur(5px);
+    --border-radius-5: 5px;
+    --padding-7-14: 7px 14px;
+    --padding-1-3rem: 1.3rem;
+    --margin-0: 0;
+    --margin-auto: auto;
+    --margin-0-5rem: 0.5rem;
+    --gap-2rem: 2rem;
+    --height-24: 24px;
+    --height-48: 48px;
+    --width-50: 50%;
+    --width-130: 130px;
+    --width-40: 40px;
+    --background-clip-text: text;
+}
+
+html, body {
+    color: var(--color-white);
+    text-rendering: optimizeLegibility;
+    font-family: system-ui, sans-serif;
+    margin: var(--margin-0);
+    height: 100%;
+}
+
+* {
+    color-scheme: dark;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-link);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Button styles */
+.button {
+    display: block;
+    color: var(--color-dark);
+    background-color: var(--color-light);
+    backdrop-filter: var(--backdrop-blur);
+    border-radius: var(--border-radius-5);
+    padding: var(--padding-7-14);
+    font-size: var(--font-size-16);
+    line-height: var(--line-height-24);
+    height: var(--height-24);
+    transition: var(--transition-all);
+    width: max-content;
+    text-decoration: none !important;
+    font-weight: var(--font-weight-600);
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+
+/* Donate buttons */
+.donate-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--gap-2rem);
+}
+
+.donate-buttons .button {
+    display: flex;
+    justify-content: center;
+    width: var(--width-130);
+    padding: var(--padding-1-3rem);
+    height: var(--height-48);
+    backdrop-filter: var(--backdrop-blur);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-white);
+}
+
+.donate-buttons .button img {
+    width: var(--width-40);
+    height: var(--height-40);
+    margin-right: var(--margin-0-5rem);
+}
+
+/* Center styles */
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: var(--width-50);
+    height: 100%;
+    margin: var(--margin-auto);
+}
+
+.center h2 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: Lato;
+}
+
+/* Flex center */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fonts */
+@font-face {
+    font-family: ProductSans;
+    src: url("/files/fonts/ProductSansRegular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: ProductSansBold;
+    src: url("/files/fonts/ProductSansBold.woff2") format("woff2");
+}

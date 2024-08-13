@@ -5,43 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="user-scalable=no, width=device-width">
     <title>CollapseLoader</title>
+
     <link rel="stylesheet" href="/files/css/styles.css">
     <link rel="stylesheet" href="/files/css/header.css">
     <link rel="stylesheet" href="/files/css/background.css">
     <link rel="shortcut icon" href="/files/img/collapse.svg">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+
     <script src="/files/js/script.js" type="module"></script>
     <script src="/files/js/libraries/lenis.min.js"></script>
     <script src="/files/js/libraries/odometer.min.js" type="module"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDZVJ6HR2K"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'G-EDZVJ6HR2K');
-    </script>
-    <!-- Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-5BKLGW9D');
-    </script>
-    <!-- End Google Tag Manager -->
+    <script src="/files/js/libraries/vanilla-tilt.min.js"></script>
 
     <!-- Meta -->
     <meta name="description"
@@ -54,124 +29,118 @@
     <meta property="og:title" content="CollapseLoader - Client loader">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://collapseloader.org">
-    <meta property="og:image" content="/files/img/logo.png">
 </head>
 
 <body onload="document.loader()">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BKLGW9D" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <div class="stars"></div>
+
     <div class="header">
         <div class="buttons">
+            <div id="header-logo">
+                <img src="/files/img/collapse.svg" width="60" id="logo">
+                <span>CollapseLoader</span>
+            </div>
+
             <nav class="header-buttons">
                 <a href="https://github.com/dest4590/CollapseLoader" target="_blank">Github</a>
                 <a href="https://web.collapseloader.org/" target="_blank">API</a>
-                <a href="https://github.com/dest4590/CollapseLoader/wiki" target="_blank">Docs</a>
                 <a href="/donate/" target="_blank">Donate</a>
                 <a href="/discord" target="_blank">Discord</a>
             </nav>
-        </div>
-    </div>
-    <div class="content">
-        <div class="top-content">
-            <div>
-                <p translate="no">Collapse</p>
-                <p translate="no">Loader</p>
+
+            <div class="download-button">
+                <a class="button" href="https://github.com/dest4590/CollapseLoader" target="_blank"><span
+                        class="material-symbols-outlined">crowdsource</span>Source Code</a>
             </div>
         </div>
-        <p class="text">Clean and transparent client loader for minecraft, supporting almost all windows versions</p>
+    </div>
+
+    <div class="content">
+        <div class="top-content">
+            <div class="text-content">
+                <div class="text">
+                    <h1>LOADER FOR YOUR NEEDS</h1>
+                </div>
+
+                <div class="small-text">
+                    <p>
+                        Simple client loader for minecraft, supports almost all versions of windows
+                    </p>
+                </div>
+            </div>
+
+            <div class="showcase">
+                <div class="showcase-text"></div>
+            </div>
+        </div>
+
         <div class="download-buttons">
-            <a class="button" href="#" onclick="document.downloadLatestRelease()"
-                onmouseenter="document.showVersion(true, this)" onmouseleave="document.showVersion(false, this)">
-                <span class="flex-center">
-                    <span class="material-symbols-outlined" translate="no">download</span>Download </span>
-                <p id="stable"></p>
-            </a>
-            <a class="button" href="#" onclick="document.downloadDev()" onmouseenter="document.showVersion(true, this)"
-                onmouseleave="document.showVersion(false, this)">
-                <span class="flex-center">
-                    <span class="material-symbols-outlined" translate="no">code</span> Download (Dev) </span>
-                <p id="dev"></p>
-            </a>
-            <a class="button" href="https://github.com/dest4590/CollapseLoader" target="_blank">
-                <span class="flex-center">
-                    <span class="material-symbols-outlined" translate="no">crowdsource</span> Source Code </span>
-            </a>
+            <a class="button" href="#" onclick="document.downloadLatestRelease()">
+                <span class="material-symbols-outlined">download</span>
+
+                Download</a>
+            <a class="button" href="#" onclick="document.downloadDev()">
+                <span class="material-symbols-outlined">code</span>
+
+                Download (Dev)</a>
         </div>
     </div>
-    <div class="text-block">
-        <h1>
-            <span class="material-symbols-outlined" translate="no">security</span>Transparency
-        </h1>
-        <h3>
-            <span class="material-symbols-outlined" translate="no">search</span>Each client is checked for viruses, and
-            even if there is something in it, it is “neutralized” If clients cannot be checked for viruses, they will
-            not be added.
-        </h3>
-        <h3>
-            <span class="material-symbols-outlined" translate="no">lock_open</span>Loader is completely <a
-                href="https://github.com/dest4590/CollapseLoader">open source</a>; you can check for viruses yourself.
-        </h3>
-        <h3>
-            <span class="material-symbols-outlined" translate="no">dns</span>CI/CD, each version of the loader is built
-            not by the creator but on GitHub servers. With MD5 hash verification, you can be 100% sure that the
-            executable file has not been modified.
-        </h3>
-    </div>
-    <div class="social-content text-block">
-        <h1>
-            <span class="material-symbols-outlined" translate="no">help</span>Fast support
-        </h1>
-        <h3 style="text-align: center;">There's a Discord server (<span id="discord-online">???</span> online) where
-            you can create a ticket and ask for help. </h3>
+
+    <div class="social-content">
+        <h1><span class="material-symbols-outlined">help</span>Fast support</h1>
+        <h3>There's a Discord server (<span id="discord-online">?</span> online) where you can create a ticket and ask
+            for help.</h3>
         <br>
         <h2>Our social links</h2>
         <div class="social-links">
-            <a class="button" href="/discord/" target="_blank">
-                <span class="flex-center">
-                    <img src="/files/img/socials/discord.svg">Discord server
-                </span>
-            </a>
-            <a class="button" href="/telegram/" target="_blank">
-                <span class="flex-center">
-                    <img src="/files/img/socials/telegram.svg">Telegram channel
-                </span>
-            </a>
-            <a class="button" href="https://github.com/dest4590/CollapseLoader" target="_blank">
-                <span class="flex-center">
-                    <img src="/files/img/socials/github.svg">GitHub
-                </span>
-            </a>
+            <a class="button" href="/discord/"><img src="/files/img/socials/discord.svg">Discord server</a>
+            <a class="button" href="https://t.me/collapseloader"><img src="/files/img/socials/telegram.svg">Telegram
+                channel</a>
+            <a class="button" href="https://github.com/dest4590/CollapseLoader" target="_blank"><img
+                    src="/files/img/socials/github.svg">GitHub</a>
         </div>
+    </div>
 
+    <div class="security-content">
+        <h1><span class="material-symbols-outlined">security</span>Transparency</h1>
+        <h3>
+            <span class="material-symbols-outlined">search</span>Each client is checked for viruses, and even if there
+            is something in it, it is “neutralized” If clients cannot be checked for viruses, they will not be added.
+        </h3>
+
+        <h3>
+            <span class="material-symbols-outlined">lock_open</span>Loader is completely open source; you can check for
+            viruses yourself.
+        </h3>
+
+        <h3>
+            <span class="material-symbols-outlined">dns</span>CI/CD, each version of the loader is built not by the
+            creator but on GitHub servers. With MD5 hash verification, you can be 100% sure that the executable file has
+            not been modified.
+        </h3>
     </div>
-    <div class="text-block">
-        <h1>
-            <span class="material-symbols-outlined" translate="no">lightbulb</span>Features
-        </h1>
+
+    <div class="features-content">
+        <h1><span class="material-symbols-outlined">lightbulb</span>Features</h1>
+
         <h3>
-            <span class="material-symbols-outlined" translate="no">bolt</span>Fast, starts up in 2 seconds on an average
-            computer, has 10-gigabit server and multiple mirrors.
+            <span class="material-symbols-outlined">bolt</span>Fast, starts in 2 seconds on an average computer, and has
+            10 gigabit servers.
+
         </h3>
         <h3>
-            <span class="material-symbols-outlined" translate="no">stadia_controller</span>Easy to use, all the user has
-            to do is press one digit.
+            <span class="material-symbols-outlined">stadia_controller</span>Easy to use, all the user has to do is one
+            digit.
         </h3>
         <h3>
-            <span class="material-symbols-outlined" translate="no">hub</span>Usability, convenient API, through which
-            you can create your own loaders, based on our.
+            <span class="material-symbols-outlined">hub</span>Usability, convenient API, through which you can create
+            your own loaders, based on our.
         </h3>
     </div>
+
     <div class="footer">
         <h1>CollapseLoaderSite</h1>
         <h3>Made by <a href="https://github.com/dest4590" target="_blank">dest4590</a>
-            </br>
-            <a href="/old">Old version</a>
-    </div>
     </div>
 </body>
 

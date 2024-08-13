@@ -18,11 +18,8 @@ export async function load() {
         const countUp = new CountUp('discord-online', await getDiscordOnline(), {
             plugin: new Odometer({ duration: 1.5, lastDigitDelay: 1 })
         });
+        
         countUp.start();
-
-        updateElementText('#stable', `Version: ${await getLatestRelease()}`);
-        updateElementText('#dev', `Commit: ${await getLatestCommit()}`);
-        // updateElementText('#codename', await getCodeName(), fadeInText);
 
         onVisible(document.querySelector(".footer"), async () => {
             const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits");
