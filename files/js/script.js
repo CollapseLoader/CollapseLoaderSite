@@ -14,6 +14,13 @@ export async function load() {
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
+
+        VanillaTilt.init(document.querySelector('.showcase'), {
+            max: 20,
+            speed: 400,
+            perspective: 600,
+            scale: 1.03,
+        });
         
         const countUp = new CountUp('discord-online', await getDiscordOnline(), {
             plugin: new Odometer({ duration: 1.5, lastDigitDelay: 1 })
