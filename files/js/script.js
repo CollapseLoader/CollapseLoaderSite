@@ -22,7 +22,7 @@ export async function load() {
 
         updateElementText('#stable', `Version: ${await getLatestRelease()}`);
         updateElementText('#dev', `Commit: ${await getLatestCommit()}`);
-        updateElementText('#codename', await getCodeName(), fadeInText);
+        // updateElementText('#codename', await getCodeName(), fadeInText);
 
         onVisible(document.querySelector(".footer"), async () => {
             const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits");
