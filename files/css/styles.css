@@ -300,17 +300,16 @@ a:hover {
         justify-content: center
     }
 
-    .buttons .header-buttons a {
-        padding: 0;
-    }
-
-    .button {
-        line-height: 14px;
-        font-size: 14px;
-    }
-
     .content .text {
         font-size: 20px;
+    }
+
+    .content .text h1 {
+        text-align: center;
+    }
+
+    .content .small-text {
+        text-align: center;
     }
 }
 
@@ -330,20 +329,25 @@ a:hover {
 /* fonts */
 @font-face {
     font-family: ProductSans;
-    src: url("/files/fonts/ProductSansRegular.ttf");
+    src: url("/files/fonts/ProductSansRegular.woff2") format("woff2");
 }
 
 @font-face {
     font-family: ProductSansBold;
-    src: url("/files/fonts/ProductSansBold.ttf");
+    src: url("/files/fonts/ProductSansBold.woff2") format("woff2");
 }
 
 @font-face {
     font-family: ggsansRegular;
-    src: url("/files/fonts/ggsansRegular.ttf");
+    src: url("/files/fonts/ggsansRegular.woff2") format("woff2");
 }
 
 @font-face {
     font-family: ggsansBold;
-    src: url("/files/fonts/ggsansBold.ttf");
+    src: url("/files/fonts/ggsansBold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url("/files/fonts/Raleway-Black.woff2") format("woff2");
 }
