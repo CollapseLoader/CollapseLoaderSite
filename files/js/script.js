@@ -6,7 +6,7 @@ export async function load() {
     
     addStars('.stars', 15);
     
-    if (location.pathname === '/') {
+    if (location.pathname != '/donate') {
         const lenis = new Lenis();
     
         function raf(time) {
@@ -33,8 +33,6 @@ export async function load() {
             const commitSha = data?.[0]?.sha.slice(0, 7) ?? '???';
             document.querySelector('.footer h1').innerHTML = `CollapseLoader <a href="https://github.com/dest4590/CollapseLoader/commit/${commitSha}" target="_blank">(${commitSha})</a>`;
         });
-    } else if (location.pathname.startsWith('/donate')) {
-
     }
 }
 

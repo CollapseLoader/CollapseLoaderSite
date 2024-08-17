@@ -26,6 +26,7 @@ a:hover {
 .button {
     display: flex;
     align-items: center;
+    justify-content: center;
 
     color: #23272a;
     background-color: #ffffffde;
@@ -203,14 +204,16 @@ a:hover {
 
 .social-content .social-links {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    justify-content: space-around;
     margin-top: 0.5rem;
     gap: 1rem;
 }
 
 .social-content .social-links a {
     margin-top: 0rem;
+    width: 160px;
 }
 
 .social-content .social-links img {
@@ -218,58 +221,37 @@ a:hover {
     margin-right: 0.5rem;
 }
 
-.security-content {
+
+/* Text block */
+.text-block {
     width: 90%;
     max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3rem;
+    margin: auto;
 }
 
-.security-content h1 {
+.text-block h1 {
     display: flex;
     align-items: center;
+    text-transform: uppercase;
+    justify-content: center;
 }
 
-.security-content h1 span {
+.text-block h1 span {
     font-size: 30px;
     margin-right: 0.5rem;
     color: #cae2ff;
 }
 
-.security-content h3 {
-    font-family: ProductSans;
+.text-block h3 {
     font-weight: 300;
     display: flex;
+    text-align: left;
     align-items: center;
     justify-content: center;
 }
 
-.features-content {
-    width: 90%;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3rem;
-}
-
-.features-content h1 {
-    display: flex;
-    align-items: center;
-}
-
-.features-content h1 span {
-    font-size: 30px;
-    margin-right: 0.5rem;
-    color: #cae2ff;
-}
-
-.features-content h3 {
-    font-family: ProductSans;
-    font-weight: 300;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+.text-block h3 a {
+    display: contents;
 }
 
 .footer {
