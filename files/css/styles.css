@@ -244,10 +244,7 @@ a:hover {
 
 .text-block h3 {
     font-weight: 300;
-    display: flex;
     text-align: left;
-    align-items: center;
-    justify-content: center;
 }
 
 .text-block h3 a {
