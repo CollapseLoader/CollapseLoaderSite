@@ -1,14 +1,19 @@
 import { CountUp } from '/files/js/libraries/countUp.min.js';
 import { Odometer } from '/files/js/libraries/odometer.min.js';
 
+async function getAnalyticsType(dataPromise, type) {
+    const data = await dataPromise;
+    return data.find(endpoint => endpoint.endpoint === `api/analytics/${type}`)?.count || 0;
+}
+
 export async function load() {
     setOSName();
-    
+
     addStars('.stars', 15);
-    
-    if (location.pathname != '/donate') {
+
+    if (location.pathname !== '/donate') {
         const lenis = new Lenis();
-    
+
         function raf(time) {
             lenis.raf(time);
             requestAnimationFrame(raf);
@@ -21,12 +26,66 @@ export async function load() {
             perspective: 600,
             scale: 1.03,
         });
-        
-        const countUp = new CountUp('discord-online', await getDiscordOnline(), {
+
+        const discordOnline = await getDiscordOnline();
+        const startValue = Number(await getAnalyticsType(await getAnalytics(), 'start'));
+        const clientValue = Number(await getAnalyticsType(await getAnalytics(), 'client'));
+
+        new CountUp('discord-online', discordOnline, {
             plugin: new Odometer({ duration: 1.5, lastDigitDelay: 1 })
-        });
+        }).start();
+
+        const startElement = document.getElementById('loader-starts');
+        const clientElement = document.getElementById('loader-clients');
+
+        new CountUp('loader-starts', startValue, {
+            plugin: new Odometer({ duration: 0.5, lastDigitDelay: 0.5 })
+        }).start();
         
-        countUp.start();
+        startElement.setAttribute('data-current-value', startValue);
+
+        new CountUp('loader-clients', clientValue, {
+            plugin: new Odometer({ duration: 0.5, lastDigitDelay: 0.5 })
+        }).start();
+
+        clientElement.setAttribute('data-current-value', clientValue);
+
+        setInterval(async () => {
+            const currentStart = Number(startElement.getAttribute('data-current-value') || '0');
+            const currentClient = Number(clientElement.getAttribute('data-current-value') || '0');
+
+            const analyticsData = await getAnalytics();
+            const newStartValue = Number(await getAnalyticsType(analyticsData, 'start'));
+            const newClientValue = Number(await getAnalyticsType(analyticsData, 'client'));
+
+            if (currentStart !== newStartValue) {
+                console.log('Start Value changed, updating...');
+                new CountUp('loader-starts', newStartValue, {
+                    plugin: new Odometer({
+                        startValue: currentStart,
+                        duration: 0.5,
+                        lastDigitDelay: 0.5
+                    })
+                }).start();
+                startElement.setAttribute('data-current-value', newStartValue);
+            } else {
+                console.log('Start Value did not change');
+            }
+
+            if (currentClient !== newClientValue) {
+                console.log('Client Value changed, updating...');
+                new CountUp('loader-clients', newClientValue, {
+                    plugin: new Odometer({
+                        startValue: currentClient,
+                        duration: 0.5,
+                        lastDigitDelay: 0.5
+                    })
+                }).start();
+                clientElement.setAttribute('data-current-value', newClientValue);
+            } else {
+                console.log('Client Value did not change');
+            }
+        }, 5000);
 
         onVisible(document.querySelector(".footer"), async () => {
             const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits");
@@ -69,6 +128,12 @@ async function getLatestRelease() {
     const data = await fetchJSON('https://api.github.com/repos/dest4590/CollapseLoader/releases');
     const releases = data?.filter(release => !release.prerelease && !release.draft) ?? [];
     return releases?.[0]?.tag_name ?? '???';
+}
+
+async function getAnalytics(type) {
+    const data = await fetchJSON('https://web.collapseloader.org/api/counter');
+
+    return data;
 }
 
 function alertCompatibility() {

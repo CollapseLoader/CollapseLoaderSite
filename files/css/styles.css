@@ -244,11 +244,36 @@ a:hover {
 
 .text-block h3 {
     font-weight: 300;
-    text-align: left;
+    text-align: center;
 }
 
 .text-block h3 a {
     display: contents;
+}
+
+.blocks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.block {
+    display: flex;
+    background-color: #ffffff3f;
+    border: 1px solid #ffffff69;
+    backdrop-filter: blur(5px);
+    width: 12rem;
+    height: 5rem;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.block h3 {
+    font-size: 1rem;
+    text-align: center;
 }
 
 .footer {
