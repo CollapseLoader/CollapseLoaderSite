@@ -50,43 +50,6 @@ export async function load() {
 
         clientElement.setAttribute('data-current-value', clientValue);
 
-        setInterval(async () => {
-            const currentStart = Number(startElement.getAttribute('data-current-value') || '0');
-            const currentClient = Number(clientElement.getAttribute('data-current-value') || '0');
-
-            const analyticsData = await getAnalytics();
-            const newStartValue = Number(await getAnalyticsType(analyticsData, 'start'));
-            const newClientValue = Number(await getAnalyticsType(analyticsData, 'client'));
-
-            if (currentStart !== newStartValue) {
-                console.log('Start Value changed, updating...');
-                new CountUp('loader-starts', newStartValue, {
-                    plugin: new Odometer({
-                        startValue: currentStart,
-                        duration: 0.5,
-                        lastDigitDelay: 0.5
-                    })
-                }).start();
-                startElement.setAttribute('data-current-value', newStartValue);
-            } else {
-                console.log('Start Value did not change');
-            }
-
-            if (currentClient !== newClientValue) {
-                console.log('Client Value changed, updating...');
-                new CountUp('loader-clients', newClientValue, {
-                    plugin: new Odometer({
-                        startValue: currentClient,
-                        duration: 0.5,
-                        lastDigitDelay: 0.5
-                    })
-                }).start();
-                clientElement.setAttribute('data-current-value', newClientValue);
-            } else {
-                console.log('Client Value did not change');
-            }
-        }, 5000);
-
         onVisible(document.querySelector(".footer"), async () => {
             const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits");
             const commitSha = data?.[0]?.sha.slice(0, 7) ?? '???';
