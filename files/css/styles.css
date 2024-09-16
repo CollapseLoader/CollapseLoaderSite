@@ -165,7 +165,6 @@ a:hover {
     font-size: large;
     padding: 16px 32px;
     font-weight: 600;
-    margin-right: 20px;
     margin-top: 20px;
     cursor: pointer;
 }
@@ -223,6 +222,10 @@ a:hover {
 .social-content .social-links img {
     width: 20px;
     margin-right: 0.5rem;
+}
+
+#discord {
+    text-align: center;
 }
 
 
@@ -292,6 +295,7 @@ a:hover {
     background-color: #13151649;
     backdrop-filter: blur(5px);
     padding: 2rem 0 2rem 0;
+    margin-top: 2rem;
 }
 
 .footer h1 {
