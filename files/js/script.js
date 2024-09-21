@@ -118,6 +118,12 @@ async function downloadDev() {
     window.open(latestPrerelease?.assets?.[0]?.browser_download_url ?? '', "_blank");
 }
 
+async function downloadUpdater() {
+    alertCompatibility();
+    const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseUpdater/releases/latest");
+    window.open(data?.assets?.[0]?.browser_download_url ?? '', "_blank");
+}
+
 function onVisible(element, callback) {
     new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -127,24 +133,6 @@ function onVisible(element, callback) {
             }
         });
     }).observe(element);
-}
-
-async function getCodeName() {
-    try {
-        const response = await fetch("https://raw.githubusercontent.com/dest4590/CollapseLoader/main/collapse/static.py");
-        const data = await response.text();
-        const codenameMatch = data.match(/CODENAME\s*=\s*['"](.+?)['"]/);
-        return codenameMatch ? codenameMatch[1] : 'Unknown';
-    } catch (error) {
-        console.error('Error fetching codename:', error);
-        return 'Unknown';
-    }
-}
-
-function fadeInText(elementId) {
-    const elem = document.querySelector(elementId);
-    setTimeout(() => { elem.style.height = '67px'; }, 1000);
-    setTimeout(() => { elem.style.opacity = 1; }, 1500);
 }
 
 async function showVersion(hover, e) {
@@ -196,5 +184,6 @@ function copyCrypto(crypto) {
 document.loader = load;
 document.downloadLatestRelease = downloadLatestRelease;
 document.downloadDev = downloadDev;
+document.downloadUpdater = downloadUpdater;
 document.showVersion = showVersion;
 document.copyCrypto = copyCrypto;
