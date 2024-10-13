@@ -31,7 +31,16 @@ a:hover {
     font-family: ProductSansBold;
     font-size: 1.5rem;
     display: flex;
-    align-items: center
+    align-items: center;
+    gap: 1rem;
+}
+
+#logo {
+    transition: all 500ms cubic-bezier(.4, 0, 0, 1);
+}
+
+#logo:hover {
+    transform: rotate(90deg);
 }
 
 .buttons .header-buttons {
@@ -41,7 +50,6 @@ a:hover {
 }
 
 .buttons .header-buttons a {
-
     color: #fff;
     margin-left: 10px;
     margin-right: 10px;
@@ -50,22 +58,17 @@ a:hover {
     transition: all .2s;
 }
 
-.buttons .download-button {
+.buttons .source-code-button {
     justify-content: flex-end;
     display: flex;
 }
 
-#logo {
-    padding: 1rem;
-    transition: all 500ms cubic-bezier(.4, 0, 0, 1);
-}
+@media only screen and (max-width: 870px) {
+    .header-buttons {
+        margin-top: 2rem;
+    }
 
-#logo:hover {
-    transform: rotate(90deg);
-}
-
-@media only screen and (max-width: 500px) {
-    .download-button {
+    .source-code-button {
         margin-top: 2rem;
     }
 }

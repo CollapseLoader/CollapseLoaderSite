@@ -11,7 +11,7 @@ export async function load() {
 
     addStars('.stars', 15);
 
-    if (location.pathname !== '/donate') {
+    if (location.pathname === '/') {
         const lenis = new Lenis();
 
         function raf(time) {
