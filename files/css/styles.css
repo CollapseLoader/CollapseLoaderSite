@@ -3,6 +3,10 @@ html.lenis body {
     height: auto;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     color: white;
     text-rendering: optimizeLegibility;
@@ -50,9 +54,21 @@ a:hover {
     transform: scale(0.95);
 }
 
+.button-back {
+    margin-top: 1.5rem;
+    width: 4rem;
+    text-align: center;
+    height: 2rem;
+}
 
 .material-symbols-outlined {
     margin-right: 0.3rem;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .content {
@@ -117,7 +133,6 @@ a:hover {
         background-position-x: right;
     }
 }
-
 
 .content .small-text {
     font-family: ggsansRegular;
