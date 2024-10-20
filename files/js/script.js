@@ -1,11 +1,6 @@
 import { CountUp } from '/files/js/libraries/countUp.min.js';
 import { Odometer } from '/files/js/libraries/odometer.min.js';
 
-async function getAnalyticsType(dataPromise, type) {
-    const data = await dataPromise;
-    return data.find(endpoint => endpoint.endpoint === `api/analytics/${type}`)?.count || 0;
-}
-
 export async function load() {
     setOSName();
 
@@ -27,28 +22,60 @@ export async function load() {
             scale: 1.03,
         });
 
-        const discordOnline = await getDiscordOnline();
-        const startValue = Number(await getAnalyticsType(await getAnalytics(), 'start'));
-        const clientValue = Number(await getAnalyticsType(await getAnalytics(), 'client'));
+        // init download buttons
+        const latestRelease = await fetchLatestRelease();
+        if (latestRelease !== '') {
+            document.getElementById('download-latest').link = latestRelease;
+            document.getElementById('download-latest').classList.remove('disabled');
+        }
+
+        const updaterRelease = await fetchUpdaterRelease();
+        if (updaterRelease !== '') {
+            document.getElementById('download-updater').link = updaterRelease;
+            document.getElementById('download-updater').classList.remove('disabled');
+        }
+
+        const latestPrerelease = await fetchLatestPrerelease();
+        if (latestPrerelease !== '') {
+            document.getElementById('download-prerelease').link = latestPrerelease;
+            document.getElementById('download-prerelease').classList.remove('disabled');
+        }
+        // =====================
+
+        const discordOnline = Number(await getDiscordOnline());
 
         new CountUp('discord-online', discordOnline, {
             plugin: new Odometer({ duration: 1.5, lastDigitDelay: 1 })
         }).start();
 
-        const startElement = document.getElementById('loader-starts');
-        const clientElement = document.getElementById('loader-clients');
+        // init analytics
+        const startValue = Number(await getAnalyticsType(await getAnalytics(), 'start'));
+        const clientValue = Number(await getAnalyticsType(await getAnalytics(), 'client'));
+        const startContainer = document.querySelector('div.content.analytics > h1:nth-child(1)');
+        const clientContainer = document.querySelector('div.content.analytics > h1:nth-child(2)');
 
-        new CountUp('loader-starts', startValue, {
-            plugin: new Odometer({ duration: 0.5, lastDigitDelay: 0.5 })
-        }).start();
-        
-        startElement.setAttribute('data-current-value', startValue);
+        if (startValue != 0) {
+            startContainer.style.opacity = 1;
+            new CountUp('loader-starts', startValue, {
+                plugin: new Odometer({ duration: 0.5, lastDigitDelay: 0.5 })
+            }).start();
+        } else {
+            startContainer.style.opacity = 1;
+            clientContainer.innerHTML = 'Cannot fetch analytics';
+        }
 
-        new CountUp('loader-clients', clientValue, {
-            plugin: new Odometer({ duration: 0.5, lastDigitDelay: 0.5 })
-        }).start();
+        if (clientValue != 0) {
+            clientContainer.style.opacity = 1;
+            new CountUp('loader-clients', clientValue, {
+                plugin: new Odometer({ duration: 0.5, lastDigitDelay: 0.5 })
+            }).start();
+        } else {
+            clientContainer.style.opacity = 1;
+            clientContainer.innerHTML = 'Cannot fetch analytics';
+        }
 
-        clientElement.setAttribute('data-current-value', clientValue);
+
+        // =====================
 
         onVisible(document.querySelector(".footer"), async () => {
             const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits");
@@ -82,21 +109,13 @@ async function getDiscordOnline() {
     return data?.presence_count ?? 0;
 }
 
-async function getLatestCommit() {
-    const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/commits");
-    return data?.[0]?.sha.slice(0, 7) ?? '???';
+async function getAnalyticsType(dataPromise, type) {
+    const data = await dataPromise;
+    return data.find(endpoint => endpoint.endpoint === `api/analytics/${type}`)?.count || 0;
 }
 
-async function getLatestRelease() {
-    const data = await fetchJSON('https://api.github.com/repos/dest4590/CollapseLoader/releases');
-    const releases = data?.filter(release => !release.prerelease && !release.draft) ?? [];
-    return releases?.[0]?.tag_name ?? '???';
-}
-
-async function getAnalytics(type) {
-    const data = await fetchJSON('https://web.collapseloader.org/api/counter');
-
-    return data;
+async function getAnalytics() {
+    return await fetchJSON('https://web.collapseloader.org/api/counter');
 }
 
 function alertCompatibility() {
@@ -105,23 +124,26 @@ function alertCompatibility() {
     }
 }
 
-async function downloadLatestRelease() {
-    alertCompatibility();
+async function fetchLatestRelease() {
     const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/releases/latest");
-    window.open(data?.assets?.[0]?.browser_download_url ?? '', "_blank");
+    return data?.assets?.[0]?.browser_download_url ?? '';
 }
 
-async function downloadDev() {
-    alertCompatibility();
+async function fetchLatestPrerelease() {
     const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseLoader/releases");
     const latestPrerelease = data?.find(release => release.prerelease);
-    window.open(latestPrerelease?.assets?.[0]?.browser_download_url ?? '', "_blank");
+    return latestPrerelease?.assets?.[0]?.browser_download_url ?? ''
 }
 
-async function downloadUpdater() {
-    alertCompatibility();
+async function fetchUpdaterRelease() {
     const data = await fetchJSON("https://api.github.com/repos/dest4590/CollapseUpdater/releases/latest");
-    window.open(data?.assets?.[0]?.browser_download_url ?? '', "_blank");
+    return data?.assets?.[0]?.browser_download_url ?? ''
+}
+
+async function openDownloadPage(self) {
+    alertCompatibility();
+    if (self.classList.contains('disabled')) return;
+    window.open(self.link, '_blank');
 }
 
 function onVisible(element, callback) {
@@ -151,14 +173,6 @@ function addStars(containerSelector, count) {
     });
 }
 
-function updateElementText(selector, text, callback) {
-    const element = document.querySelector(selector);
-    if (element) {
-        element.innerText = text;
-        if (callback) callback(selector);
-    }
-}
-
 function copyCrypto(crypto) {
     const walletAddresses = {
         'ton': "UQAIAReD2gT6KaXyf88qOPiXh8jqL01bPMJ3TVy_S5DriAEe",
@@ -182,8 +196,6 @@ function copyCrypto(crypto) {
 }
 
 document.loader = load;
-document.downloadLatestRelease = downloadLatestRelease;
-document.downloadDev = downloadDev;
-document.downloadUpdater = downloadUpdater;
+document.openDownloadPage = openDownloadPage;
 document.showVersion = showVersion;
 document.copyCrypto = copyCrypto;

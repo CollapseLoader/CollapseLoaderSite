@@ -77,31 +77,27 @@
         </div>
 
         <div class="download-buttons">
-            <a class="button" href="#" onclick="document.downloadLatestRelease()">
+            <a class="button disabled" href="#" id="download-latest" onclick="document.openDownloadPage(this)">
                 <span class="material-symbols-outlined">download</span>
 
                 Download</a>
 
-            <a class="button" href="#" onclick="document.downloadUpdater()">
+            <a class="button disabled" href="#" id="download-updater" onclick="document.openDownloadPage(this)">
                 <span class="material-symbols-outlined">browser_updated</span>
 
                 Download updater</a>
 
-            <a class="button" href="#" onclick="document.downloadDev()">
+            <a class="button disabled" href="#" id="download-prerelease" onclick="document.openDownloadPage(this)">
                 <span class="material-symbols-outlined">code</span>
 
                 Download (Dev)</a>
         </div>
     </div>
 
-    <div class="blocks content">
-        <div class="block">
-            <h3><span id="loader-starts">0</span> loader starts</h3>
-        </div>
+    <div class="content analytics">
+        <h1 class="analytic"><p>LOADER STARTS</p><span id="loader-starts">0</span></h1>
 
-        <div class="block">
-            <h3><span id="loader-clients">0</span> clients started</h3>
-        </div>
+        <h1 class="analytic"><p>CLIENT STARTS</p><span id="loader-clients">0</span></h1>
     </div>
 
     <div class="social-content text-block">
