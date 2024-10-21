@@ -53,7 +53,7 @@ export async function load() {
         const clientValue = Number(await getAnalyticsType(await getAnalytics(), 'client'));
         const startContainer = document.querySelector('div.content.analytics > h1:nth-child(1)');
         const clientContainer = document.querySelector('div.content.analytics > h1:nth-child(2)');
-
+      
         if (startValue != 0) {
             startContainer.style.opacity = 1;
             new CountUp('loader-starts', startValue, {
@@ -61,7 +61,7 @@ export async function load() {
             }).start();
         } else {
             startContainer.style.opacity = 1;
-            clientContainer.innerHTML = 'Cannot fetch analytics';
+            startContainer.innerHTML = 'Cannot fetch analytics';
         }
 
         if (clientValue != 0) {
@@ -70,11 +70,8 @@ export async function load() {
                 plugin: new Odometer({ duration: 0.5, lastDigitDelay: 0.5 })
             }).start();
         } else {
-            clientContainer.style.opacity = 1;
-            clientContainer.innerHTML = 'Cannot fetch analytics';
+            clientContainer.remove()
         }
-
-
         // =====================
 
         onVisible(document.querySelector(".footer"), async () => {
@@ -96,11 +93,13 @@ function setOSName() {
 async function fetchJSON(url) {
     try {
         const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
         return await response.json();
     } catch (error) {
-        console.error(`Error fetching ${url}:`, error);
-        return null;
+        console.error('Error fetching JSON:', error);
+        return [];
     }
 }
 
@@ -109,13 +108,16 @@ async function getDiscordOnline() {
     return data?.presence_count ?? 0;
 }
 
-async function getAnalyticsType(dataPromise, type) {
-    const data = await dataPromise;
-    return data.find(endpoint => endpoint.endpoint === `api/analytics/${type}`)?.count || 0;
+function getAnalyticsType(analytics, type) {
+    if (!Array.isArray(analytics)) {
+        return 0;
+    }
+    const item = analytics.find(a => a.endpoint.includes(type));
+    return item ? item.count : 0;
 }
 
 async function getAnalytics() {
-    return await fetchJSON('https://web.collapseloader.org/api/counter');
+    return await fetchJSON('https://web.collapseloader.org/api/counter/');
 }
 
 function alertCompatibility() {
