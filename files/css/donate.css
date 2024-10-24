@@ -139,3 +139,8 @@ a:hover {
     font-family: ProductSansBold;
     src: url("/files/fonts/ProductSansBold.woff2") format("woff2");
 }
+
+@font-face {
+    font-family: Lato;
+    src: url("/files/fonts/Lato-Regular.woff2") format("woff2");
+}
